@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  TR-098 small-cell.org vendor extension
+-->
+
+<dm:document xmlns:dm="urn:broadband-forum-org:cwmp:datamodel-1-3" 
+    xmlns:dmr="urn:broadband-forum-org:cwmp:datamodel-report-0-1" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="urn:broadband-forum-org:cwmp:datamodel-1-3 cwmp-datamodel-1-3.xsd 
+                        urn:broadband-forum-org:cwmp:datamodel-report-0-1 cwmp-datamodel-report.xsd" 
+    spec="urn:small-cell-org:x-small-cell-tr098-1-0">
+  <description>InternetGatewayDevice data model (SmallCell additions).</description>
+
+  <import file="tr-098-1-6.xml" spec="urn:broadband-forum-org:tr-098-1-6">
+    <model name="InternetGatewayDevice:1.12"/>
+  </import>
+
+  <model name="X_SMALL-CELL-ORG_InternetGatewayDevice:1.0" base="InternetGatewayDevice:1.12">
+
+  </model>
+</dm:document>

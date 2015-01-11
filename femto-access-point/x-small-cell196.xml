@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  TR-196 small-cell.org vendor extension
+-->
+
+<dm:document xmlns:dm="urn:broadband-forum-org:cwmp:datamodel-1-4"
+    xmlns:dmr="urn:broadband-forum-org:cwmp:datamodel-report-0-1"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="urn:broadband-forum-org:cwmp:datamodel-1-4
+                           http://www.broadband-forum.org/cwmp/cwmp-datamodel-1-4.xsd
+                        urn:broadband-forum-org:cwmp:datamodel-report-0-1
+                           http://www.broadband-forum.org/cwmp/cwmp-datamodel-report.xsd"
+    spec="urn:small-cell-org:x-small-cell-tr196-2-0">
+  <description>FAPService:2.0 Femto Access Point Service Data Model (SmallCell additions).</description>
+
+  <import file="tr-196-2-0.xml" spec="urn:broadband-forum-org:tr-196-2-0-1">
+    <model name="FAPService:2.0"/>
+  </import>
+
+  <model name="X_SMALL-CELL-ORG_FAPService:2.0" base="FAPService:2.0">
+
+  </model>
+</dm:document>

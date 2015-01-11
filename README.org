@@ -17,17 +17,22 @@
 
 
 * CPE models
-  Model stack:
+
+** Model stack:
   - Device:2 Data Model: TR181i2
   - InternetGataway-Device:1 Data Model: TR-098
   - Service Objects/FAPService:2 Data Model: TR-196i2
 
+** Vendor extension
+   - x-small-cell181.xml : TR-181 small-cell.org vendor extension
 
 ** TODO FEMTO FAP model on Device:2 root [0/2]
    - [ ] Model validation using report.pl
    - [ ] Define FAP DM. UTRA example [[http://tr069.wordpress.com/2013/07/11/tr-review-tr-196-issue-2-femto-access-point-service-data-model/][here]].
    - [ ] Defaine dummy vendor extension like in x-cate181.xml.
-   - 
+   -
+
+ 
 
 * org-config                                                        :ARCHIVE:
 #+STARTUP: content hidestars logdone
