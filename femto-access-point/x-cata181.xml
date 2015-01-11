@@ -1,0 +1,532 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  TR-181 catawampus.org vendor extension
+-->
+
+<dm:document xmlns:dm="urn:broadband-forum-org:cwmp:datamodel-1-3" 
+    xmlns:dmr="urn:broadband-forum-org:cwmp:datamodel-report-0-1" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="urn:broadband-forum-org:cwmp:datamodel-1-3 cwmp-datamodel-1-3.xsd 
+                        urn:broadband-forum-org:cwmp:datamodel-report-0-1 cwmp-datamodel-report.xsd" 
+    spec="urn:catawampus-org:x-catawampus-tr181-2-0">
+  <description>Device:2.x data model (Catawampus additions).</description>
+
+  <import file="tr-181-2-4.xml" spec="urn:broadband-forum-org:tr-181-2-4">
+    <model name="Device:2.4"/>
+  </import>
+
+  <model name="X_CATAWAMPUS-ORG_Device:2.0" base="Device:2.4">
+    <object base="Device." access="readOnly" minEntries="1" maxEntries="1"/>
+
+    <object name="Device.DNS." access="readOnly" minEntries="1" maxEntries="1"/>
+    <object name="Device.DNS.Diagnostics." access="readOnly" minEntries="1" maxEntries="1">
+      <parameter name="X_CATAWAMPUS-ORG_ExtraCheckServers" access="readWrite" activeNotify="canDeny">
+        <description>A comma-delimited list of DNS servers to check.</description>
+        <syntax><string><size maxLength="8192"/></string></syntax>
+      </parameter>
+    </object>
+
+    <object name="Device.X_CATAWAMPUS-ORG_DynamicDNS." access="readOnly" minEntries="1" maxEntries="1">
+      <parameter name="ServiceNumberOfEntries" access="readOnly">
+        <description>The number of instances of {{object|.X_CATAWAMPUS-ORG_DynamicDNS.Service.{i}.}}.</description>
+        <syntax>
+          <unsignedInt/>
+        </syntax>
+      </parameter>
+    </object>
+    <object base="Device.X_CATAWAMPUS-ORG_DynamicDNS.Service.{i}." access="readOnly" numEntriesParameter="ServiceNumberOfEntries" minEntries="0" maxEntries="unbounded" enableParameter="Enable">
+      <description>Each instance is a Dynamic DNS provider to update as the device Internet Address changes.</description>
+      <parameter name="Enable" access="readWrite">
+        <description>Enable this entry.</description>
+        <syntax><boolean/></syntax>
+      </parameter>
+      <parameter name="ServiceName" access="readWrite">
+        <description>The name of the Dynamic DNS service provider, for example:
+        dyndns@dyndns.org OR statdns@dyndns.org OR custom@dyndns.org
+        default@freedns.afraid.org
+        default@zoneedit.com
+        default@no-ip.com
+        </description>
+        <syntax><string><size maxLength="256"/></string></syntax>
+      </parameter>
+      <parameter name="ServiceURL" access="readWrite">
+        <description>The URL name of the Dynamic DNS service provider.</description>
+        <syntax><string/></syntax>
+      </parameter>
+      <parameter name="Status" access="readOnly">
+        <description>The status of this entry.  {{enum}}
+The {{enum|Misconfigured_NoServiceName}} value indicates that the ServiceName is undefined or invalid.
+        </description>
+        <syntax>
+          <string>
+            <enumeration value="Disabled"/>
+            <enumeration value="Enabled"/>
+            <enumeration value="Misconfigured_NoServiceName"/>
+            <enumeration value="Misconfigured_NoDomain"/>
+          </string>
+          <default type="object" value="Disabled"/>
+        </syntax>
+      </parameter>
+      <parameter name="Username" access="readWrite">
+        <description>The username to use when logging in.</description>
+        <syntax><string><size maxLength="256"/></string></syntax>
+      </parameter>
+      <parameter name="Password" access="readWrite">
+        <description>The password to use when logging in.</description>
+        <syntax><string><size maxLength="256"/></string></syntax>
+      </parameter>
+      <parameter name="Domain" access="readWrite">
+        <description>The name of the domain(s) to register with the Dynamic DNS service. Though it is expected that only a single domain will be present here, multiple domains can be specifyed by separating them with commas.</description>
+        <syntax><string><size maxLength="256"/></string></syntax>
+      </parameter>
+      <parameter name="UpdateFrequency" access="readOnly">
+        <description>How frequently to update the service, in in {{units}}.</description>
+        <syntax><unsignedInt><units value="minutes"/></unsignedInt></syntax>
+      </parameter>
+    </object>
+
+    <object base="Device.Ethernet." access="readOnly" minEntries="1" maxEntries="1"/>
+    <object base="Device.Ethernet.Interface.{i}." access="readOnly" numEntriesParameter="InterfaceNumberOfEntries" minEntries="0" maxEntries="unbounded">
+      <parameter name="X_CATAWAMPUS-ORG_ActualBitRate" access="readOnly" dmr:previousParameter="MaxBitRate">
+        <description>The current link speed of this interface (expressed in {{units}}).</description>
+        <syntax>
+          <unsignedInt>
+            <units value="Mbps"/>
+          </unsignedInt>
+        </syntax>
+      </parameter>
+      <parameter name="X_CATAWAMPUS-ORG_ActualDuplexMode" access="readOnly" dmr:previousParameter="DuplexMode">
+        <description>The current duplex mode of this connection.</description>
+        <syntax>
+          <string>
+            <enumeration value="Half"/>
+            <enumeration value="Full"/>
+          </string>
+        </syntax>
+      </parameter>
+    </object>
+
+    <object name="Device.Ethernet.Interface.{i}.Stats." access="readOnly" minEntries="1" maxEntries="1">
+      <parameter name="X_CATAWAMPUS-ORG_DiscardFrameCnts" access="readOnly">
+        <description>The count of discarded frames per queue.</description>
+        <syntax>
+          <list/>
+          <unsignedInt/>
+        </syntax>
+      </parameter>
+      <parameter name="X_CATAWAMPUS-ORG_DiscardPacketsReceivedHipri" access="readOnly">
+        <description>Number of discarded packets which were considered high priority.</description>
+        <syntax>
+          <unsignedInt/>
+        </syntax>
+      </parameter>
+    </object>
+
+    <object name="DeviceInfo." access="readOnly" minEntries="1" maxEntries="1">
+      <parameter name="X_CATAWAMPUS-ORG_LedStatusNumberOfEntries" access="readOnly">
+        <description>The number of instances of {{object|.X_CATAWAMPUS-ORG_LedStatus.{i}.}}.</description>
+        <syntax>
+          <unsignedInt/>
+        </syntax>
+      </parameter>
+    </object>
+    <object name="DeviceInfo.X_CATAWAMPUS-ORG_LedStatus.{i}." access="readOnly"
+            numEntriesParameter="X_CATAWAMPUS-ORG_LedStatusNumberOfEntries" minEntries="0" maxEntries="unbounded">
+        <description>This object reflects the state of an LED or other indicator light.</description>
+        <uniqueKey><parameter ref="Name"/></uniqueKey>
+        <parameter name="Name" access="readOnly">
+            <description>Name of this LED. This text MUST be sufficient to distinguish this object from others.</description>
+            <syntax><string><size maxLength="256"/></string></syntax>
+        </parameter>
+        <parameter name="Status" access="readOnly">
+            <description>
+              A description of the state of the indicator.
+            </description>
+            <syntax>
+              <string/>
+            </syntax>
+        </parameter>
+    </object>
+    <object name="DeviceInfo.TemperatureStatus." access="readOnly" minEntries="1" maxEntries="1" />
+    <object name="DeviceInfo.TemperatureStatus.X_CATAWAMPUS-ORG_Fan.{i}." access="readOnly" 
+            numEntriesParameter="X_CATAWAMPUS-ORG_FanNumberOfEntries" minEntries="0" maxEntries="unbounded">
+        <description>This object represents information that the device has obtained via sampling a fan, blower, or other temperature management device.</description>
+        <uniqueKey><parameter ref="Name"/></uniqueKey>
+        <parameter name="Name" access="readOnly">
+            <description>Name of this fan. This text MUST be sufficient to distinguish this fan from others.</description>
+            <syntax><string><size maxLength="256"/></string></syntax>
+        </parameter>
+        <parameter name="RPM" access="readOnly">
+            <description>
+              Measured speed of the fan, in revolutions/minute.
+            </description>
+            <syntax>
+              <int/>
+            </syntax>
+        </parameter>
+        <parameter name="DesiredRPM" access="readOnly">
+            <description>
+              The calculated speed the system believes the fan should run at, given the current temperature. Measured in revolutions/minute.
+            </description>
+            <syntax>
+              <int/>
+            </syntax>
+        </parameter>
+        <parameter name="DesiredPercentage" access="readOnly">
+            <description>
+              Percentage for the level that the fan should run at.
+            </description>
+            <syntax>
+              <int/>
+            </syntax>
+        </parameter>
+    </object>
+
+    <object name="Device.DHCPv4.Server." access="readOnly" minEntries="1" maxEntries="1">
+      <parameter name="X_CATAWAMPUS-ORG_TextConfig" access="readWrite">
+        <description>For debugging purposes, the current contents of the DHCP server configuration file (for example, dnsmasq.conf).</description>
+        <syntax>
+          <string>
+            <size maxLength="65536"/>
+          </string>
+        </syntax>
+      </parameter>
+    </object>
+    <object name="Device.DHCPv4.Server.Pool.{i}." access="readWrite" numEntriesParameter="PoolNumberOfEntries"  enableParameter="Enable" minEntries="0" maxEntries="unbounded">
+      <parameter name="X_CATAWAMPUS-ORG_NTPServers" access="readWrite">
+        <description>{{list}} List items represent NTP servers offered to DHCP clients.</description>
+        <syntax>
+          <list maxItems="4"/>
+          <dataType ref="string"/>
+        </syntax>
+      </parameter>
+    </object>
+
+    <object name="Device.DHCPv4.Server.Pool.{i}.StaticAddress.{i}." access="readWrite" numEntriesParameter="StaticAddressNumberOfEntries" enableParameter="Enable" minEntries="0" maxEntries="unbounded">
+      <uniqueKey>
+        <parameter ref="X_CATAWAMPUS-ORG_ClientID"/>
+      </uniqueKey>
+      <parameter name="X_CATAWAMPUS-ORG_ClientID" access="readWrite">
+        <description>Value of the DHCP Client Identifier (Option 61) as defined in {{bibref|RFC2132}} sent by the DHCP client.</description>
+        <syntax>
+          <hexBinary>
+            <size maxLength="255"/>
+          </hexBinary>
+          <default type="object" value=""/>
+        </syntax>
+      </parameter>
+    </object>
+
+    <object name="Device.Hosts.Host.{i}." access="readOnly" numEntriesParameter="HostNumberOfEntries" minEntries="0"  maxEntries="unbounded">
+      <parameter name="IP4Address" access="readOnly">
+        <description>The first IPv4 address known for the Host, or an empty string if there are no addresses.</description>
+        <syntax>
+          <string>
+            <size maxLength="15"/>
+          </string>
+        </syntax>
+      </parameter>
+      <parameter name="IP6Address" access="readOnly">
+        <description>The first IPv6 address known for the Host, or an empty string if there are no addresses.</description>
+        <syntax>
+          <string>
+            <size maxLength="45"/>
+          </string>
+        </syntax>
+      </parameter>
+    </object>
+
+    <object name="Device.Hosts.Host.{i}.X_CATAWAMPUS_ORG_ClientIdentification." access="readOnly" minEntries="1" maxEntries="1">
+      <description>Fingerprinting information to identify a client device.</description>
+      <parameter name="DhcpFingerprint" access="readOnly">
+        <description>A comma separated list of DHCP options requested by this client, in the order they were requested. Ex: 1,28,3,15,6,42</description>
+        <syntax>
+          <string>
+            <size maxLength="4096"/>
+          </string>
+        </syntax>
+      </parameter>
+      <parameter name="SsdpServer" access="readOnly">
+        <description>The Server: line from an SSDP message sent by this client. Ex: "Windows-Vista/6.0 UPnP/1.0"</description>
+        <syntax>
+          <string>
+            <size maxLength="256"/>
+          </string>
+        </syntax>
+      </parameter>
+      <parameter name="AsusModel" access="readOnly">
+        <description>The model name advertised using the ASUS Discovery Protocol.</description>
+        <syntax>
+          <string>
+            <size maxLength="32"/>
+          </string>
+        </syntax>
+      </parameter>
+      <parameter name="DnsSdName" access="readOnly">
+        <description>The hostname advertised using DNS-SD.</description>
+        <syntax>
+          <string>
+            <size maxLength="256"/>
+          </string>
+        </syntax>
+      </parameter>
+      <parameter name="NetbiosName" access="readOnly">
+        <description>The hostname advertised using NETBIOS.</description>
+        <syntax>
+          <string>
+            <size maxLength="16"/>
+          </string>
+        </syntax>
+      </parameter>
+    </object>
+
+    <object name="Device.IP.Interface.{i}." access="readWrite" numEntriesParameter="InterfaceNumberOfEntries" enableParameter="Enable" minEntries="0" maxEntries="unbounded">
+      <parameter name="X_CATAWAMPUS-ORG_IP4Address" access="readOnly">
+        <description>First IPv4 address from IPv4Address.{i}, or an empty string if there are no addresses.</description>
+        <syntax>
+          <string>
+            <size maxLength="15"/>
+          </string>
+        </syntax>
+      </parameter>
+      <parameter name="X_CATAWAMPUS-ORG_IP6Address" access="readOnly">
+        <description>First IPv4 address from IPv6Address.{i}, or an empty string if there are no addresses.</description>
+        <syntax>
+          <string>
+            <size maxLength="45"/>
+          </string>
+        </syntax>
+      </parameter>
+    </object>
+
+    <object name="Device.MoCA.Interface.{i}." access="readOnly" numEntriesParameter="InterfaceNumberOfEntries" minEntries="0"  maxEntries="unbounded" dmr:fixedObject="true">
+      <parameter name="X_CATAWAMPUS-ORG_ExtraTracing" access="readWrite">
+        <description>Enables or disables additional trace messages from mocad.</description>
+        <syntax>
+          <boolean/>
+        </syntax>
+      </parameter>
+    </object>
+
+    <object name="Device.MoCA.Interface.{i}.Stats." access="readOnly" minEntries="1" maxEntries="1">
+      <parameter name="X_CATAWAMPUS-ORG_DiscardFrameCnts" access="readOnly">
+        <description>The count of discarded frames per queue.</description>
+        <syntax>
+          <list/>
+          <unsignedInt/>
+        </syntax>
+      </parameter>
+      <parameter name="X_CATAWAMPUS-ORG_DiscardPacketsReceivedHipri" access="readOnly">
+        <description>Number of discarded packets which were considered high priority.</description>
+        <syntax>
+          <unsignedInt/>
+        </syntax>
+      </parameter>
+    </object>
+
+    <object name="Device.MoCA.Interface.{i}.AssociatedDevice.{i}." access="readOnly"  numEntriesParameter="AssociatedDeviceNumberOfEntries" minEntries="0" maxEntries="unbounded">
+      <parameter name="X_CATAWAMPUS-ORG_RxPowerLevel_dBm" access="readOnly" dmr:previousParameter="RxPowerLevel">
+        <description>The RxPowerLevel in dBm.</description>
+        <syntax>
+          <float>
+            <units value="dBm"/>
+          </float>
+        </syntax>
+      </parameter>
+      <parameter name="X_CATAWAMPUS-ORG_RxBcastPowerLevel_dBm" access="readOnly" dmr:previousParameter="RxBcastPowerLevel">
+        <description>The RxBcastPowerLevel in dBm.</description>
+        <syntax>
+          <float>
+            <units value="dBm"/>
+          </float>
+        </syntax>
+      </parameter>
+      <parameter name="X_CATAWAMPUS-ORG_RxSNR_dB" access="readOnly" dmr:previousParameter="RxSNR">
+        <description>The Signal/Noise ratio in dB.</description>
+        <syntax>
+          <float>
+            <units value="dB"/>
+          </float>
+        </syntax>
+      </parameter>
+      <parameter name="X_CATAWAMPUS-ORG_TxBitloading" access="readOnly" dmr:previousParameter="Active">
+        <description>A description of the signal quality of each subchannel, one character per subchannel.</description>
+        <syntax>
+          <string/>
+        </syntax>
+      </parameter>
+      <parameter name="X_CATAWAMPUS-ORG_RxBitloading" access="readOnly">
+        <description>A description of the signal quality of each subchannel, one character per subchannel.</description>
+        <syntax>
+          <string/>
+        </syntax>
+      </parameter>
+    </object>
+
+    <object name="Device.IP.Diagnostics.X_CATAWAMPUS-ORG_Speedtest." access="readOnly" minEntries="1" maxEntries="1">
+      <description>This object provides access to an IP-layer performance test.</description>
+      <parameter name="DiagnosticsState" access="readWrite" activeNotify="canDeny">
+        <description>Indicates availability of diagnostic data.  {{enum}}
+If the ACS sets the value of this parameter to {{enum|Requested}}, the CPE MUST initiate the corresponding diagnostic test.  When  writing, the only allowed value is {{enum|Requested}}.  To ensure the use of the proper test parameters (the writable parameters in  this object), the test parameters MUST be set either prior to or at the same time as (in the same SetParameterValues) setting the  {{param}} to {{enum|Requested}}.
+When requested, the CPE SHOULD wait until after completion of the communication session with the ACS before starting the diagnostic.
+When the test is completed, the value of this parameter MUST be either {{enum|Complete}} (if the test completed successfully), or one  of the ''Error'' values listed above.
+If the value of this parameter is anything other than {{enum|Complete}}, the values of the results parameters for this test are  indeterminate.
+When the diagnostic initiated by the ACS is completed (successfully or not), the CPE MUST establish a new connection to the ACS to  allow the ACS to view the results, indicating the Event code ''8 DIAGNOSTICS COMPLETE'' in the Inform message.
+After the diagnostic is complete, the value of all result parameters (all read-only parameters in this object) MUST be retained by  the CPE until either this diagnostic is run again, or the CPE reboots.  After a reboot, if the CPE has not retained the result  parameters from the most recent test, it MUST set the value of this parameter to {{enum|None}}.
+Modifying any of the writable parameters in this object except for this one MUST result in the value of this parameter being set to  {{enum|None}}.
+While the test is in progress, modifying any of the writable parameters in this object except for this one MUST result in the test  being terminated and the value of this parameter being set to {{enum|None}}.
+While the test is in progress, setting this parameter to {{enum|Requested}} (and possibly modifying other writable parameters in this  object) MUST result in the test being terminated and then restarted using the current values of the test parameters.</description>
+        <syntax>
+          <string>
+            <enumeration value="None" access="readOnly"/>
+            <enumeration value="Requested"/>
+            <enumeration value="Complete" access="readOnly"/>
+            <enumeration value="Error_Internal" access="readOnly"/>
+            <enumeration value="Error_Other" access="readOnly"/>
+          </string>
+        </syntax>
+      </parameter>
+      <parameter name="License" access="readWrite">
+        <description>The license and test configuration to be used for the speed test invocation.</description>
+        <syntax>
+          <string>
+            <size maxLength="16384"/>
+          </string>
+        </syntax>
+      </parameter>
+      <parameter name="Arguments" access="readWrite">
+        <description>Arguments to pass to the speedtest. This string will be broken into distinct arguments at whitespaces. Note that no shell is involved, and shell substitutions will not be performed.</description>
+        <syntax>
+          <string>
+            <size maxLength="1024"/>
+          </string>
+        </syntax>
+      </parameter>
+      <parameter name="Output" access="readOnly">
+        <description>The output of the speed test run.</description>
+        <syntax>
+          <string>
+            <size maxLength="65536"/>
+          </string>
+        </syntax>
+      </parameter>
+      <parameter name="LastResultTime" access="readOnly">
+        <description>The time of the most recent speedtest run.</description>
+        <syntax>
+          <dateTime/>
+        </syntax>
+      </parameter>
+    </object>
+
+    <object name="Device.IP.Diagnostics.X_CATAWAMPUS-ORG_Isostream." access="readOnly" minEntries="1" maxEntries="1">
+      <description>This object provides access to run an IP-layer jitter/throughput test.The results are very detailed and available only via the system logs.</description>
+      <parameter name="ServerEnable" access="readWrite">
+        <description>True if this device should accept incoming connections.</description>
+        <syntax>
+          <boolean/>
+        </syntax>
+      </parameter>
+      <parameter name="ServerTimeLimit" access="readWrite">
+        <description>Automatically disable the server if it runs for more than this many seconds. If zero, there is no limit.</description>
+        <syntax>
+          <unsignedInt/>
+        </syntax>
+      </parameter>
+      <parameter name="ClientEnable" access="readWrite">
+        <description>True if this device should be running a client right now.</description>
+        <syntax>
+          <boolean/>
+        </syntax>
+      </parameter>
+      <parameter name="ClientDisableIfPortActive" access="readWrite">
+        <description>If nonzero, disable isostream client if a TCP connection exists on the given port.</description>
+        <syntax>
+          <unsignedInt/>
+        </syntax>
+      </parameter>
+      <parameter name="ClientTimeLimit" access="readWrite">
+        <description>Automatically disable the client if it runs for more than this many seconds. If zero, there is no limit.</description>
+        <syntax>
+          <unsignedInt/>
+        </syntax>
+      </parameter>
+      <parameter name="ClientRemoteIP" access="readWrite">
+        <description>IP address or hostname of server to connect to. If this is set to the empty string, the client will attemp to connect to the nearest GFiberTV storage box if there is one on the LAN.</description>
+        <syntax>
+          <string>
+            <size maxLength="128"/>
+          </string>
+        </syntax>
+      </parameter>
+      <parameter name="ClientMbps" access="readWrite">
+        <description>The data rate to use for the client connection in Mbits/sec.</description>
+        <syntax>
+          <unsignedInt/>
+        </syntax>
+      </parameter>
+    </object>
+
+    <object name="Device.IP.Diagnostics.X_CATAWAMPUS-ORG_HttpDownload." access="readOnly" minEntries="1" maxEntries="1">
+      <description>Download a URL using http or https. The file is sent to /dev/null, not stored on the device.</description>
+      <parameter name="DiagnosticsState" access="readWrite" activeNotify="canDeny">
+        <description>Indicates availability of diagnostic data.  {{enum}}
+If the ACS sets the value of this parameter to {{enum|Requested}}, the CPE MUST initiate the corresponding diagnostic test.  When  writing, the only allowed value is {{enum|Requested}}.  To ensure the use of the proper test parameters (the writable parameters in  this object), the test parameters MUST be set either prior to or at the same time as (in the same SetParameterValues) setting the  {{param}} to {{enum|Requested}}.
+When requested, the CPE SHOULD wait until after completion of the communication session with the ACS before starting the diagnostic.
+When the test is completed, the value of this parameter MUST be either {{enum|Complete}} (if the test completed successfully), or one  of the ''Error'' values listed above.
+</description>
+        <syntax>
+          <string>
+            <enumeration value="None" access="readOnly"/>
+            <enumeration value="Requested"/>
+            <enumeration value="Complete" access="readOnly"/>
+            <enumeration value="Error_Internal" access="readOnly"/>
+            <enumeration value="Error_Other" access="readOnly"/>
+          </string>
+        </syntax>
+      </parameter>
+      <parameter name="IPVersion" access="readWrite">
+        <description>The connection can be restricted to IPv4 or IPv6.</description>
+        <syntax>
+          <string>
+            <enumeration value="Unspecified"/>
+            <enumeration value="IPv4_Only"/>
+            <enumeration value="IPv6_Only"/>
+          </string>
+          <default type="object" value="Unspecified"/>
+        </syntax>
+      </parameter>
+      <parameter name="LimitMbps" access="readWrite">
+        <description>If non-zero, limit the download to this many Mbits/sec.</description>
+        <syntax><unsignedInt/></syntax>
+      </parameter>
+      <parameter name="Result" access="readOnly">
+        <description>Text output generated during the HTTP test.</description>
+        <syntax><string/></syntax>
+      </parameter>
+      <parameter name="Timeout" access="readWrite">
+        <description>Automatically terminate after this many seconds.</description>
+        <syntax><unsignedInt/></syntax>
+      </parameter>
+      <parameter name="URL" access="readWrite">
+        <description>The URL to access.</description>
+        <syntax><boolean/></syntax>
+      </parameter>
+    </object>
+
+    <object name="Device.NAT.PortMapping.{i}." access="readWrite" numEntriesParameter="PortMappingNumberOfEntries" enableParameter="Enable" minEntries="0" maxEntries="unbounded">
+      <parameter name="X_CATAWAMPUS-ORG_PortRangeSize" access="readWrite">
+        <description>Maps a contiguous set of ports starting with {{param|ExternalPort}} mapped to {{param|InternalPort}},
+{{param|ExternalPort}} + 1 mapped to {{param|InternalPort}} +1, etc for {{param|X_CATAWAMPUS-ORG_PortRangeSize}} ports.
+A value of zero (0) indicates that no set of ports is specified, i.e. that the mapping is only {{param|ExternalPort}} to {{param|InternalPort}}.
+If {{param|ExternalPort}} is zero (wildcard), the value of this parameter MUST be ignored.
+If both {{param|X_CATAWAMPUS-ORG_PortRangeSize}} and {{param|ExternalPortEndRange}} are set, the results are undefined.</description>
+        <syntax>
+          <unsignedInt>
+            <range minInclusive="0" maxInclusive="65535"/>
+          </unsignedInt>
+          <default type="object" value="0"/>
+        </syntax>
+      </parameter>
+    </object>
+  </model>
+</dm:document>

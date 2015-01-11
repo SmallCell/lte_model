@@ -1,0 +1,48 @@
+# -*- org-confirm-babel-evaluate: nil -*-
+#+TITLE: LTE modeling
+#+CATEGORY: SmallCells
+
+* Overview
+  - [[http://www.broadband-forum.org/cwmp.php][CPE WAN Management Protocol (CWMP)]]
+  
+
+* Tools 
+  - The script parses, validates and reports data model definitions
+    compliant with the cwmp:datamodel (DM) XML schema.
+    https://tr69xmltool.iol.unh.edu/repos/cwmp-xml-tools/Report_Tool/
+
+  - catawampus.org PY Scripts usefull for code generation from
+    model. Also has usefull DM vendor extension examples.
+    https://gfiber.googlesource.com/vendor/google/catawampus/+/newkernel_dev
+
+
+* CPE models
+  Model stack:
+  - Device:2 Data Model: TR181i2
+  - InternetGataway-Device:1 Data Model: TR-098
+  - Service Objects/FAPService:2 Data Model: TR-196i2
+
+
+** TODO FEMTO FAP model on Device:2 root [0/2]
+   - [ ] Model validation using report.pl
+   - [ ] Define FAP DM. UTRA example [[http://tr069.wordpress.com/2013/07/11/tr-review-tr-196-issue-2-femto-access-point-service-data-model/][here]].
+   - [ ] Defaine dummy vendor extension like in x-cate181.xml.
+   - 
+
+* org-config                                                        :ARCHIVE:
+#+STARTUP: content hidestars logdone
+#+TAGS: DOCS(d) CODING(c) TESTING(t) PLANING(p)
+#+LINK_UP: sitemap.html
+#+LINK_HOME: main.html
+#+COMMENT: toc:nil
+#+OPTIONS: ^:nil
+#+OPTIONS:   H:3 num:t toc:t \n:nil @:t ::t |:t ^:nil -:t f:t *:t <:t
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+DESCRIPTION: Augment design process with system property discovering aid.
+#+KEYWORDS: SmallCell,
+#+LANGUAGE: en
+#+PROPERTY: Effort_ALL  1:00 2:00 4:00 6:00 8:00 12:00
+#+COLUMNS: %38ITEM(Details) %TAGS(Context) %7TODO(To Do) %5Effort(Time){:} %6CLOCKSUM{Total}
+
+#+STYLE: <link rel="stylesheet" type="text/css" href="org-manual.css" />
+
