@@ -17,20 +17,291 @@
 
 
 * CPE models
-
+  TS 32.594 for LTE FAP
 ** Model stack:
-  - Device:2 Data Model: TR181i2
   - InternetGataway-Device:1 Data Model: TR-098
+    - SoftwareModules, Security, FaultMgt (3GPP-TS.32.111-5 and 3GPP-TS.32.300)
+    - TR-262 defines CWMP objects to be used (GPS, Tunnel, Performance Management, etc.)
+  - Device:2 Data Model: TR181i2
   - Service Objects/FAPService:2 Data Model: TR-196i2
 
 ** Vendor extension
    - x-small-cell181.xml : TR-181 small-cell.org vendor extension
+   - x-small-cell098.xml : TR-098 small-cell.org vendor extension
+   - x-small-cell196.xml : TR-196 small-cell.org vendor extension
 
-** TODO FEMTO FAP model on Device:2 root [0/2]
-   - [ ] Model validation using report.pl
-   - [ ] Define FAP DM. UTRA example [[http://tr069.wordpress.com/2013/07/11/tr-review-tr-196-issue-2-femto-access-point-service-data-model/][here]].
-   - [ ] Defaine dummy vendor extension like in x-cate181.xml.
-   -
+** Profiles
+   - tr-098-1-6-0.xml
+     profile Baseline:1
+     profile Baseline:2
+     profile EthernetLAN:1
+     profile EthernetLAN:2
+     profile USBLAN:1
+     profile USBLAN:2
+     profile WiFiLAN:1
+     profile WiFiLAN:2
+     profile WiFiWMM:1
+     profile WiFiWPS:1
+     profile ADSLWAN:1
+     profile ADSL2WAN:1
+     profile VDSL2WAN:1
+     profile PTMWAN:1
+     profile EthernetWAN:1
+     profile POTSWAN:1
+     profile QoS:1
+     profile QoS:2
+     profile QoSDynamicFlow:1
+     profile QoSDynamicFlow:2
+     profile QoSStats:1
+     profile Bridging:1
+     profile Bridging:2
+     profile BridgingPortVLAN:1
+     profile Time:1
+     profile Time:2
+     profile CaptivePortal:1
+     profile IPPing:1
+     profile TraceRoute:1
+     profile Download:1
+     profile DownloadTCP:1
+     profile Upload:1
+     profile UploadTCP:1
+     profile UDPEcho:1
+     profile UDPEchoPlus:1
+     profile ATMLoopback:1
+     profile DSLDiagnostics:1
+     profile ADSL2DSLDiagnostics:1
+     profile VDSL2DSLDiagnostics:1
+     profile DeviceAssociation:1
+     profile DeviceAssociation:2
+     profile UDPConnReq:1
+     profile DHCPCondServing:1
+     profile DHCPOption:1
+     profile MemoryStatus:1
+     profile ProcessStatus:1
+     profile TempStatus:1
+     profile TempStatusAdv:1
+     profile TempStatusAdv:2
+     profile AutonXferComplPolicy:1
+     profile User:1
+     profile UPnPDev:1
+     profile UPnPDiscBasic:1
+     profile UPnPDiscAdv:1
+     profile UPnPDiscAdv:2
+     profile SelfTestDiag:1
+     profile NSLookupDiag:1
+     profile SimpleFirewall:1
+     profile USBHostsBasic:1
+     profile USBHostsAdv:1
+     profile PeriodicStatsBase:1
+     profile PeriodicStatsAdv:1
+     profile DownloadAnnounce:1
+     profile DownloadQuery:1
+     profile SupportedDataModel:1
+     profile SupportedDataModel:2
+     profile Processors:1
+     profile VendorLogFiles:1
+     profile DUStateChngComplPolicy:1
+     profile SM_ExecEnvs:1
+     profile SM_DeployAndExecUnits:1
+     profile SM_Baseline:1
+     profile FaultMgmtSupportedAlarms:1
+     profile FaultMgmtActive:1 
+     profile FaultMgmtHistory:1
+     profile FaultMgmtExpedited:1
+     profile FaultMgmtQueued:1
+     profile Location:1
+     profile FAP_GPS:1
+     profile FAP_Tunnel:1
+     profile FAP_PerfMgmt:1
+     profile FAP_ApplicationPlatform:1
+     profile BulkDataColl:1
+     profile BulkDataFileTransfer:1
+     profile BulkDataStreaming:1
+     profile DNS_SD:1
+   - tr-181-2-4.xml
+     profile Download:1
+     profile DownloadTCP:1
+     profile Upload:1
+     profile UploadTCP:1
+     profile UDPEcho:1
+     profile UDPEchoPlus:1
+     profile SupportedDataModel:1
+     profile MemoryStatus:1
+     profile ProcessStatus:1
+     profile TempStatus:1
+     profile TempStatusAdv:1
+     profile TempStatusAdv:2
+     profile AutonXferComplPolicy:1
+     profile User:1
+     profile UPnPDev:1
+     profile UPnPDiscBasic:1
+     profile UPnPDiscAdv:1
+     profile SelfTestDiag:1
+     profile NSLookupDiag:1
+     profile SimpleFirewall:1
+     profile AdvancedFirewall:1
+     profile USBHostsBasic:1
+     profile USBHostsAdv:1
+     profile PeriodicStatsBase:1
+     profile PeriodicStatsAdv:1
+     profile DownloadAnnounce:1
+     profile DownloadQuery:1
+     profile Baseline:1
+     profile Baseline:2
+     profile Baseline:3
+     profile Optical:1
+     profile EthernetRMONStats:1
+     profile Ghn:1
+     profile DNSRelay:1
+     profile Routing:1
+     profile Routing:2
+     profile IPv6Routing:1
+     profile IPInterface:1
+     profile IPInterface:2
+     profile IPv6Interface:1
+     profile PPPInterface:1
+     profile PPPInterface:2
+     profile VLANTermination:1
+     profile EthernetLink:1
+     profile Bridge:1
+     profile VLANBridge:1
+     profile BridgeFilter:1
+     profile BridgeFilter:2
+     profile ATMLink:1
+     profile PTMLink:1
+     profile EthernetInterface:1
+     profile ADSL:1
+     profile ADSL2:1
+     profile VDSL2:1
+     profile BondedDSL:1
+     profile HPNA:1
+     profile HPNADiagnostics:1
+     profile HPNAQoS:1
+     profile HomePlug:1
+     profile MoCA:1
+     profile UPA:1
+     profile UPADiagnostics:1
+     profile WiFiRadio:1
+     profile WiFiSSID:1
+     profile WiFiAccessPoint:1
+     profile WiFiEndPoint:1
+     profile USBInterface:1
+     profile USBPort:1
+     profile NAT:1
+     profile QoS:1
+     profile QoS:2
+     profile QoSDynamicFlow:1
+     profile QoSStats:1
+     profile NeighborDiscovery:1
+     profile RouterAdvertisement:1
+     profile IPv6rd:1
+     profile DSLite:1
+     profile Hosts:1
+     profile Hosts:2
+     profile GatewayInfo:1
+     profile DeviceAssociation:1
+     profile UDPConnReq:1
+     profile CaptivePortal:1
+     profile Time:1
+     profile IEEE8021xAuthentication:1
+     profile IPPing:1
+     profile TraceRoute:1
+     profile ATMLoopback:1
+     profile DSLDiagnostics:1
+     profile ADSL2Diagnostics:1
+     profile VDSL2Diagnostics:1
+     profile DHCPv4Client:1
+     profile DHCPv4Server:1
+     profile DHCPv4CondServing:1
+     profile DHCPv4Relay:1
+     profile DHCPv4ServerClientInfo:1
+     profile DHCPv6Client:1
+     profile DHCPv6ClientServerIdentity:1
+     profile DHCPv6Server:1
+     profile DHCPv6ServerAdv:1
+     profile DHCPv6ServerClientInfo:1
+     profile Processors:1
+     profile VendorLogFiles:1
+     profile DUStateChngComplPolicy:1
+     profile SM_ExecEnvs:1
+     profile SM_DeployAndExecUnits:1
+     profile SM_Baseline:1
+     profile Location:1
+     profile FaultMgmtSupportedAlarms:1
+     profile FaultMgmtActive:1 
+     profile FaultMgmtHistory:1
+     profile FaultMgmtExpedited:1
+     profile FaultMgmtQueued:1
+     profile FAP_GPS:1
+     profile FAP_PerfMgmt:1
+     profile FAP_ApplicationPlatform:1
+   - tr-196-2-0.xml 
+     profile Baseline:1
+     profile ACLUMTS:1
+     profile REMWCDMA:1
+     profile REMGSM:1
+     profile UMTSBaseline:1
+     profile UMTSSelfConfig:1
+     profile UMTSSelfConfigNLInUseIntraFreqCell:1
+     profile UMTSSelfConfigNLInUseInterFreqCell:1
+     profile UMTSSelfConfigNLInUseInterRATCell:1
+     profile UMTSCellConfigBaseline:1
+     profile UMTSCellConfigAdvanced:1
+     profile UMTSCellConfigFreqMeasurement:1
+     profile UMTSCellConfigUEInternalMeasurement:1
+     profile UMTSCellConfigNLIntraFreqCell:1
+     profile UMTSCellConfigNLInterFreqCell:1
+     profile UMTSCellConfigNLInterRATCell:1
+     profile LTEBaseline:1
+     profile LTECellConfigEPC:1
+     profile LTECellConfigRANPHY:1
+     profile LTECellConfigRANPHYTDD:1
+     profile LTECellConfigRANMACRLC:1
+     profile LTECellConfigRANRRC:1
+     profile LTECellConfigRANMobilityIdleModeCommon:1
+     profile LTECellConfigRANMobilityIdleModeEUTRA:1
+     profile LTECellConfigRANMobilityIdleModeIRATUTRA:1
+     profile LTECellConfigRANMobilityIdleModeIRATGERAN:1
+     profile LTECellConfigRANMobilityIdleModeIRATCDMA2000:1
+     profile LTECellConfigRANMobilityConnmodeEUTRAN:1
+     profile LTECellConfigRANMobilityConnmodeIRAT:1
+     profile LTECellConfigRANNLLTECell:1
+     profile LTECellConfigRANNLIRATUMTSCell:1
+     profile LTECellConfigRANNLIRATGSMCell:1
+     profile LTECellConfigRANNLIRATCDMA2000Cell:1
+     profile REMLTE:1
+     profile CDMA2000Baseline:1
+     profile OneXSelfConfig:1
+     profile HRPDSelfConfig:1
+     profile CDMA2000Time:1
+     profile CDMA2000Gateway:1
+     profile CDMA2000OneXPCF:1
+     profile CDMA2000HRPDPCF:1
+     profile CDMA2000OneXRAN:1
+     profile CDMA2000OneXAccessParameters:1
+     profile CDMA2000OneXNeighborList:1
+     profile CDMA2000OneXSystemParameters:1
+     profile CDMA2000Beacon:1
+     profile CDMA2000OneXPowerControl:1
+     profile CDMA2000OneXHandoff:1
+     profile CDMA2000HRPDRAN:1
+     profile CDMA2000HRPDHandoff:1
+     profile CDMA2000OneXREM:1
+     profile CDMA2000OneXREMControl:1
+     profile CDMA2000HRPDREM:1
+     profile CDMA2000HRPDREMControl:1
+     profile CDMA2000MacroTiming:1
+     profile CDMA2000NetworkListenMode:1
+
+
+
+
+** DONE FEMTO FAP model on Device:2 root [3/3]
+   CLOSED: [2015-01-12 Mon 20:27]
+   - [X] Model validation using report.pl
+   - [X] Define FAP DM. UTRA example [[http://tr069.wordpress.com/2013/07/11/tr-review-tr-196-issue-2-femto-access-point-service-data-model/][here]].
+   - [X] Defaine dummy vendor extension like in x-cate181.xml.
+
 
  
 

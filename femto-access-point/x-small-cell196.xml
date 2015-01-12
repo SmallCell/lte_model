@@ -18,6 +18,5 @@
   </import>
 
   <model name="X_SMALL-CELL-ORG_FAPService:2.0" base="FAPService:2.0">
-
   </model>
 </dm:document>
