@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+HSS speceific small-cell.org vendor extension
+-->
+
+<dm:document xmlns:dm="urn:broadband-forum-org:cwmp:datamodel-1-3" 
+             xmlns:dmr="urn:broadband-forum-org:cwmp:datamodel-report-0-1" 
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+             xsi:schemaLocation="urn:broadband-forum-org:cwmp:datamodel-1-3 cwmp-datamodel-1-3.xsd 
+                                 urn:broadband-forum-org:cwmp:datamodel-report-0-1 cwmp-datamodel-report.xsd" 
+             spec="urn:small-cell-org:x-small-cell-hss-1-0">
+ <description>SmallCell HSS Service Data Model (HSSService:1.0)</description>
+ <import file="tr-106-1-0-types.xml" spec="urn:broadband-forum-org:tr-106-1-0">
+  <dataType name="IPAddress" />
+  <dataType name="IPv4Address" />
+  <dataType name="Alias" />
+ </import>
+
+ <model name="HSSService:1.0" isService="true">
+  <object name="HSSService." access="readOnly" minEntries="1" maxEntries="1">
+   <object name="Capabilities." access="readOnly" minEntries="1" maxEntries="1">
+    <description>This object contains parameters relating to the hardware capabilities of the HSS server.</description>
+   </object> 
+
+   <parameter name="SubscriberListNumberOfEntries" access="readOnly">
+    <description>{{numentries}}</description>
+    <syntax>
+     <unsignedInt />
+    </syntax>
+   </parameter> 
+   
+   <object name="SubscriberList.{i}." access="readOnly" minEntries="0" maxEntries="unbounded" numEntriesParameter="SubscriberListNumberOfEntries">
+    <description>Registered UE List</description>
+    <uniqueKey>
+     <parameter ref="IMSI" />
+    </uniqueKey>
+    <parameter name="IMSI" access="readWrite">
+     <description>IMSI (International Mobile Subscriber Identity) is the subscribers permanent identity.</description>
+     <syntax>
+      <string>
+       <size maxLength="15" />
+      </string>
+      <default type="object" value="" />
+     </syntax>
+    </parameter>
+
+
+    <parameter name="IMEI / IMEISV         " access="readWrite">
+     <description> International Mobile Equipment Identity - Software Version Number               </description>
+     <syntax> <string/></syntax>
+    </parameter>
+    <parameter name="MME Address           " access="readWrite">
+     <description> The IP address of the MME currently serving this MS.                            </description>
+     <syntax> <string/></syntax>
+    </parameter>
+    <parameter name="MS PS Purged from EPS " access="readWrite">
+     <description> Indicates that the EMM and ESM contexts of the UE are deleted from the MME.     </description>
+     <syntax> <string/></syntax>
+    </parameter>
+    <parameter name="ODB parameters        " access="readWrite">
+     <description> Indicates that the status of the operator determined barring                    </description>
+     <syntax> <string/></syntax>
+    </parameter>
+    <parameter name="URRP-MME              " access="readWrite">
+     <description> UE Reachability Request Parameter indicating that UE activity notification from </description>
+     <syntax> <string/></syntax>
+    </parameter>
+
+
+    <parameter name="SubscriptionProfileListNumberOfEntries" access="readOnly">
+     <description>{{numentries}}</description>
+     <syntax>
+      <unsignedInt />
+     </syntax>
+    </parameter>
+
+    <object name="SubscriptionProfileList.{i}." access="readOnly" minEntries="0" maxEntries="unbounded" numEntriesParameter="SubscriptionProfileListNumberOfEntries">
+     <description>Each subscription profile contains one or more PDN subscription contexts</description>
+
+     <parameter name="Context Identifier         " access="readWrite">
+      <description> Index of the PDN subscription context.                              </description>
+      <syntax> <string/></syntax>
+     </parameter>
+     <parameter name="PDN Address                " access="readWrite">
+      <description> Indicates subscribed IP address(es).                                </description>
+      <syntax> <string/></syntax>
+     </parameter>
+     <parameter name="PDN Type                   " access="readWrite">
+      <description> Indicates the subscribed PDN Type (IPv4, IPv6, IPv4v6)              </description>
+      <syntax> <string/></syntax>
+     </parameter>
+     <parameter name="Access Point Name (APN)    " access="readWrite">
+      <description> A label according to DNS naming conventions                         </description>
+      <syntax> <string/></syntax>
+     </parameter>
+     <parameter name="EPS subscribed QoS profile " access="readWrite">
+      <description> The bearer level QoS parameter values for that APN's default bearer </description>
+      <syntax> <string/></syntax>
+     </parameter>
+     <parameter name="Subscribed-APN-AMBR        " access="readWrite">
+      <description> The maximum aggregated uplink and downlink MBRs                     </description>
+      <syntax> <string/></syntax>
+     </parameter>
+     <parameter name="PDN GW identity            " access="readWrite">
+      <description> The identity of the PDN GW used for this APN.                       </description>
+      <syntax> <string/></syntax>
+     </parameter>
+    </object>
+   </object>
+
+  </object>
+ </model>
+ 
+</dm:document>

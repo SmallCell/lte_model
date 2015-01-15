@@ -6,7 +6,11 @@ REPORT = perl ../scripts/report.pl --include=../base/cwmp --loglevel=error --now
 BASELINE = ../base/cwmp/tr-181-2-4.xml  ../base/cwmp/tr-098-1-6.xml  ../base/cwmp/tr-196-2-0.xml
 X-VENDOR = x-small-cell181.xml x-small-cell098.xml x-small-cell196.xml
 X-VENDOR-DOC = $(patsubst %.xml,%.html,$(X-VENDOR))
-TARGETS = x-dummy-small-cell-dt.xml x-dummy-small-cell-dt.html x-dummy-small-cell.html
+TARGETS = x-small-cell-mme-1.0-dt.xml 	\
+	x-small-cell-sgw-1.0-dt.xml	\
+	x-small-cell-pgw-1.0-dt.xml 	\
+	x-small-cell-hss-1.0-dt.xml	
+
 
 all: $(TARGETS) 
 
@@ -30,7 +34,10 @@ x-dummy-small-cell-dt.xml: x-dummy-small-cell.xml
 
 test:
 	@echo "Do nothing usefull"
-	$(REPORT) -report=text x-dummy-small-cell-dt.xml
+	# $(REPORT) -report=text x-small-cell-mme-1.0.xml
+	# $(REPORT) -report=text x-small-cell-sgw-1.0.xml
+	$(REPORT) -report=text x-small-cell-pgw-1.0.xml
+	# $(REPORT) -report=text x-small-cell-hss-1.0.xml
 
 clean:
 	$(RM) $(TARGETS) $(X-VENDOR-DOC)

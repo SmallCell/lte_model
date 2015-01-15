@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  Dummy defice small-cell.org vendor extension
+  Dummy CPE small-cell.org vendor extension
 -->
 
 <dm:document xmlns:dm="urn:broadband-forum-org:cwmp:datamodel-1-3" 
