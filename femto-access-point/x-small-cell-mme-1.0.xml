@@ -3,24 +3,30 @@
 MME speceific small-cell.org vendor extension
 -->
 
-<dm:document xmlns:dm="urn:broadband-forum-org:cwmp:datamodel-1-3" 
-             xmlns:dmr="urn:broadband-forum-org:cwmp:datamodel-report-0-1" 
-             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-             xsi:schemaLocation="urn:broadband-forum-org:cwmp:datamodel-1-3 cwmp-datamodel-1-3.xsd 
-                                 urn:broadband-forum-org:cwmp:datamodel-report-0-1 cwmp-datamodel-report.xsd" 
+<dm:document xmlns:dm="urn:broadband-forum-org:cwmp:datamodel-1-3"
+             xmlns:dmr="urn:broadband-forum-org:cwmp:datamodel-report-0-1"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="urn:broadband-forum-org:cwmp:datamodel-1-3 cwmp-datamodel-1-3.xsd
+                                 urn:broadband-forum-org:cwmp:datamodel-report-0-1 cwmp-datamodel-report.xsd"
              spec="urn:small-cell-org:x-small-cell-mme-1-0">
+
  <description>SmallCell MME Service Data Model (MMEService:1.0)</description>
+
  <import file="tr-106-1-0-types.xml" spec="urn:broadband-forum-org:tr-106-1-0">
   <dataType name="IPAddress" />
   <dataType name="IPv4Address" />
   <dataType name="Alias" />
  </import>
 
+  <import file="x-small-cell-types-1-0.xml" spec="urn:broadband-forum-org:tr-106-1-0">
+    <dataType name="TEID"/>
+  </import>
+
  <model name="MMEService:1.0" isService="true">
   <object name="MMEService." access="readOnly" minEntries="1" maxEntries="1">
    <object name="Capabilities." access="readOnly" minEntries="1" maxEntries="1">
     <description>This object contains parameters relating to the hardware capabilities of the MME server.</description>
-   </object> 
+   </object>
    <object name="MobilityManagement." access="readOnly" minEntries="1" maxEntries="1">
     <description>The MME maintains MM context and EPS bearer context information for UEs in the ECM-IDLE, ECM-CONNECTED and EMM-DEREGISTERED states. </description>
 
@@ -29,8 +35,8 @@ MME speceific small-cell.org vendor extension
      <syntax>
       <unsignedInt />
      </syntax>
-    </parameter> 
-    
+    </parameter>
+
     <object name="UEList.{i}." access="readOnly" minEntries="0" maxEntries="unbounded" numEntriesParameter="UEListNumberOfEntries">
      <description>Registered UE List</description>
      <uniqueKey>
@@ -48,123 +54,166 @@ MME speceific small-cell.org vendor extension
 
      <parameter name="MSISDN" access="readWrite">
       <description>The basic MSISDN of the UE. The presence is dictated by its storage in the HSS.</description>
-      <syntax> <string/></syntax>
+      <syntax>
+       <string>
+        <size maxLength="15" />
+       </string>
+       <default type="object" value="" />
+      </syntax>
      </parameter>
 
      <parameter name="MMState" access="readWrite">
       <description>Mobility management state ECM-IDLE, ECM-CONNECTED, EMM-DEREGISTERED.</description>
       <syntax>
        <string>
-        <enumeration value="ECM-IDLE" />
-        <enumeration value="ECM-CONNECTED" />
-        <enumeration value="EMM-DEREGISTERED" />
+        <enumeration value="ECM-IDLE"/>
+        <enumeration value="ECM-CONNECTED"/>
+        <enumeration value="EMM-DEREGISTERED"/>
        </string>
       </syntax>
      </parameter>
 
-     <parameter name="GUTI                         " access="readWrite">
-      <description> Globally Unique Temporary Identity.                                                                             </description>
+     <parameter name="GUTI" access="readWrite">
+      <description>Globally Unique Temporary Identity. To identify a UE between the UE and the   MME on behalf of IMSI for security reason. GUTI (not more than 80 bits) = GUMMEI + M-TMSI
+      </description>
       <syntax> <string/></syntax>
      </parameter>
-     <parameter name="ME Identity                  " access="readWrite">
-      <description> Mobile Equipment Identity - (e.g. IMEI/IMEISV) Software Version Number                                          </description>
+
+     <parameter name="MMEI" access="readWrite">
+      <description> Mobile Equipment Identity - (e.g. IMEI/IMEISV)
+      Software Version Number. MMEI (24 bits) = MMEGI + MMEC.
+      </description>
       <syntax> <string/></syntax>
      </parameter>
-     <parameter name="Tracking Area List           " access="readWrite">
-      <description> Current Tracking area list TAI of last TAU  TAI of the TA in which the last Tracking Area Update was initiated. </description>
+
+     <parameter name="TAIList" access="readWrite">
+      <description> Current Tracking area list TAI of last TAU TAI of
+      the TA in which the last Tracking Area Update was
+      initiated. UE can move into the cells included in TAL list without location update (TA update). Globally unique. {TAI} (variable length)
+      </description>
       <syntax> <string/></syntax>
      </parameter>
-     <parameter name="E-UTRAN Cell Global Identity " access="readWrite">
-      <description> Last known E-UTRAN cell                                                                                         </description>
+
+     <parameter name="ECGI" access="readWrite">
+      <description>E-UTRAN Cell Global Identity. Last known E-UTRAN
+      cell. To identify a Cell in global (Globally Unique) EPC can
+      know UE location based of ECGI. ECGI (not more than 52 bits) = PLMN ID+ECI.
+      </description>
       <syntax> <string/></syntax>
      </parameter>
-     <parameter name="E-UTRAN Cell Identity Age    " access="readWrite">
-      <description> Time elapsed since the last E-UTRAN Cell Global Identity was acquired                                           </description>
+
+     <parameter name="ECGIAge" access="readWrite">
+      <description> Time elapsed since the last E-UTRAN Cell Global
+      Identity was acquired.</description>
       <syntax> <string/></syntax>
      </parameter>
-     <parameter name="Authentication Vector        " access="readWrite">
-      <description> Temporary authentication and key agreement data that enables an MME to engage in AKA with a particular user.    </description>
+
+     <parameter name="AV" access="readWrite">
+      <description> Authentication Vector. Temporary authentication and key agreement data that enables an MME to engage in AKA with a particular user.</description>
       <syntax> <string/></syntax>
      </parameter>
-     <parameter name="UE Network Capability        " access="readWrite">
-      <description> UE network capabilities including security algorithms and key derivation functions                              </description>
+
+     <parameter name="UENetworkCapability" access="readWrite">
+      <description> UE network capabilities including security algorithms and key derivation functions</description>
       <syntax> <string/></syntax>
      </parameter>
-     <parameter name="UE Specific DRX Parameters   " access="readWrite">
-      <description> UE specific DRX parameters for A/Gb mode, Iu mode and S1-mode                                                   </description>
+
+     <parameter name="UESpecificDRXParameters" access="readWrite">
+      <description> UE specific DRX parameters for A/Gb mode, Iu mode and S1-mode</description>
       <syntax> <string/></syntax>
      </parameter>
-     <parameter name="Selected NAS Algorithm       " access="readWrite">
-      <description> Selected NAS security algorithm                                                                                 </description>
+
+     <parameter name="SelectedNASAlgorithm" access="readWrite">
+      <description> Selected NAS security algorithm</description>
       <syntax> <string/></syntax>
      </parameter>
-     <parameter name="Selected AS Algorithm        " access="readWrite">
-      <description> Selected AS security algorithms.                                                                                </description>
+
+     <parameter name="SelectedASAlgorithm" access="readWrite">
+      <description> Selected AS security algorithms.</description>
       <syntax> <string/></syntax>
      </parameter>
-     <parameter name="KSI_ASME                     " access="readWrite">
-      <description> Key Set Identifier for the main key K_ASME                                                                      </description>
+
+     <parameter name="KSI_ASME" access="readWrite">
+      <description> Key Set Identifier for the main key K_ASME</description>
       <syntax> <string/></syntax>
      </parameter>
-     <parameter name="K_ASME                       " access="readWrite">
-      <description> Main key for E-UTRAN key hierarchy based on CK, IK and Serving network identity                                 </description>
+
+     <parameter name="K_ASME" access="readWrite">
+      <description> Main key for E-UTRAN key hierarchy based on CK, IK and Serving network identity</description>
       <syntax> <string/></syntax>
      </parameter>
-     <parameter name="NAS Keys and COUNT           " access="readWrite">
-      <description> KNASint, K_NASenc, and NAS COUNT parameter.                                                                     </description>
+
+     <parameter name="NasKeysAndCount" access="readWrite">
+      <description> KNASint, K_NASenc, and NAS COUNT parameter.</description>
       <syntax> <string/></syntax>
      </parameter>
-     <parameter name="E-UTRAN/UTRAN Key Set flag   " access="readWrite">
-      <description> Indicates whether the UE is using security keys derived from UTRAN or E-UTRAN security association              </description>
+
+     <parameter name="KeySetFlag" access="readWrite">
+      <description>E-UTRAN/UTRAN Key Set flag. Indicates whether the UE is using security keys derived from UTRAN or E-UTRAN security association</description>
       <syntax> <string/></syntax>
      </parameter>
-     <parameter name="Recovery                     " access="readWrite">
-      <description> Indicates if the HSS is performing database recovery.                                                           </description>
+
+     <parameter name="Recovery" access="readWrite">
+      <description> Indicates if the HSS is performing database recovery.</description>
       <syntax> <string/></syntax>
      </parameter>
-     <parameter name="MME IP address for S11       " access="readWrite">
-      <description> MME IP address for the S11 interface (used by S-GW)                                                             </description>
-      <syntax> <string/></syntax>
+
+     <parameter name="MmeIpAddressForS11" access="readWrite">
+      <description> MME IP address for the S11 interface (used by S-GW)</description>
+      <syntax><dataType ref="IPAddress"/></syntax>
      </parameter>
-     <parameter name="MME TEID for S11             " access="readWrite">
-      <description> MME Tunnel Endpoint Identifier for S11 interface.                                                               </description>
-      <syntax> <string/></syntax>
+
+     <parameter name="MmeTeidForS11" access="readWrite">
+      <description> MME Tunnel Endpoint Identifier for S11 interface.</description>
+      <syntax><dataType ref="TEID"/></syntax>
      </parameter>
-     <parameter name="S-GW IP address for S11/S4   " access="readWrite">
-      <description> S-GW IP address for the S11 and S4 interfaces                                                                   </description>
-      <syntax> <string/></syntax>
+
+     <parameter name="SGwIpAddressForS11S4" access="readWrite">
+      <description> S-GW IP address for the S11 and S4 interfaces</description>
+      <syntax><dataType ref="IPAddress"/></syntax>
      </parameter>
-     <parameter name="S-GW TEID for S11/S4         " access="readWrite">
-      <description> S-GW Tunnel Endpoint Identifier for the S11 and S4 interfaces.                                                  </description>
-      <syntax> <string/></syntax>
+
+     <parameter name="SGwTeidForS11S4" access="readWrite">
+      <description> S-GW Tunnel Endpoint Identifier for the S11 and S4 interfaces.</description>
+      <syntax><dataType ref="TEID"/></syntax>
      </parameter>
-     <parameter name="eNodeB Address in Use        " access="readWrite">
-      <description> The IP address of the eNodeB currently used for control plane signalling.                                       </description>
-      <syntax> <string/></syntax>
+
+     <parameter name="ENodeBAddressInUse" access="readWrite">
+      <description> The IP address of the eNodeB currently used for control plane signalling.</description>
+      <syntax><dataType ref="IPAddress"/></syntax>
      </parameter>
-     <parameter name="eNB UE S1AP ID               " access="readWrite">
-      <description> Unique identity of the UE within eNodeB.                                                                        </description>
-      <syntax> <string/></syntax>
+
+     <parameter name="EnbUeS1apId" access="readWrite">
+      <description>Unique identity of the UE within eNodeB.  INTEGER (0..4294967295)</description>
+      <syntax><unsignedInt/></syntax>
      </parameter>
-     <parameter name="MME UE S1AP ID               " access="readWrite">
-      <description> Unique identity of the UE within MME.                                                                           </description>
-      <syntax> <string/></syntax>
+
+     <parameter name="MmeUeS1apId" access="readWrite">
+      <description>Unique identity of the UE within MME.</description>
+      <syntax><unsignedInt/></syntax>
      </parameter>
-     <parameter name="Subscribed UE-AMBR           " access="readWrite">
-      <description> The Maximum Aggregated uplink and downlink MBR values to be shared across all Non-GBR bearers.                  </description>
-      <syntax> <string/></syntax>
+
+     <parameter name="SubscribedUeAmbr" access="readWrite">
+      <description> The Maximum Aggregated uplink and downlink MBR
+      values to be shared across all Non-GBR bearers.</description>
+      <syntax><unsignedInt/></syntax>
      </parameter>
-     <parameter name="UE-AMBR                      " access="readWrite">
-      <description> The currently used Maximum Aggregated uplink and downlink MBR values                                            </description>
-      <syntax> <string/></syntax>
+
+     <parameter name="UeAmbr" access="readWrite">
+      <description> The currently used Maximum Aggregated uplink and downlink MBR values</description>
+      <syntax><unsignedInt/></syntax>
      </parameter>
-     <parameter name="RFSP Index in Use            " access="readWrite">
-      <description> An index to specific RRM configuration in the E-UTRAN that is currently in use.                                 </description>
-      <syntax> <string/></syntax>
+
+     <parameter name="RfspIndexInUse" access="readWrite">
+      <description>RAT/Frequency Selection Priority. An index to
+      specific RRM configuration in the E-UTRAN that is currently in
+      use.</description>
+      <syntax><string/></syntax>
      </parameter>
-     <parameter name="URRP-MME                     " access="readWrite">
-      <description> URRP-MME indicating for HSS regarding UE reachability at the MME                                                </description>
-      <syntax> <string/></syntax>
+
+     <parameter name="URRP-MME" access="readWrite">
+      <description>URRP-MME indicating for HSS regarding UE reachability at the MME</description>
+      <syntax><boolean/></syntax>
      </parameter>
 
      <parameter name="PDNConnectionListNumberOfEntries" access="readOnly">
@@ -175,57 +224,80 @@ MME speceific small-cell.org vendor extension
      </parameter>
      <object name="PDNConnectionList.{i}." access="readOnly" minEntries="0" maxEntries="unbounded" numEntriesParameter="PDNConnectionListNumberOfEntries">
       <description>For each active PDN connection</description>
-      <parameter name="APN in Use                        " access="readWrite">
-       <description> The APN currently used.                                                                              </description>
+
+      <parameter name="ApnInUse" access="readWrite">
+       <description> The APN currently used.</description>
        <syntax> <string/></syntax>
       </parameter>
-      <parameter name="APN Subscribed                    " access="readWrite">
-       <description> The subscribed APN received from the HSS.                                                            </description>
+
+      <parameter name="ApnSubscribed" access="readWrite">
+       <description> The subscribed APN received from the HSS.</description>
        <syntax> <string/></syntax>
       </parameter>
-      <parameter name="APN Restriction                   " access="readWrite">
-       <description> Denotes the restriction on this EPS bearer Context.                                                  </description>
-       <syntax> <string/></syntax>
+
+      <parameter name="ApnRestriction" access="readWrite">
+       <description> Denotes the restriction on this EPS bearer Context.</description>
+       <syntax><string/></syntax>
       </parameter>
-      <parameter name="PDN Type                          " access="readWrite">
-       <description> IPv4, IPv6 or IPv4v6                                                                                 </description>
-       <syntax> <string/></syntax>
+
+      <parameter name="PdnType" access="readWrite">
+       <description> IPv4, IPv6 or IPv4v6</description>
+       <syntax><string/></syntax>
       </parameter>
-      <parameter name="IP Address(es)                    " access="readWrite">
-       <description> IPv4 address and/or IPv6 prefix                                                                      </description>
-       <syntax> <string/></syntax>
+
+      <parameter name="IPAddress" access="readWrite">
+       <description> IPv4 address and/or IPv6 prefix</description>
+       <syntax><dataType ref="IPAddress"/></syntax>
       </parameter>
-      <parameter name="PDN GW Address in Use             " access="readWrite">
-       <description> (control plane)  The IP address of the PDN GW currently used for sending control plane signalling.   </description>
-       <syntax> <string/></syntax>
+
+      <parameter name="PdnGwAddressInUse" access="readWrite">
+       <description> (control plane) The IP address of the PDN GW
+       currently used for sending control plane
+       signalling.</description>
+       <syntax><dataType ref="IPAddress"/></syntax>
       </parameter>
-      <parameter name="PDN GW TEID for S5/S8             " access="readWrite">
-       <description> (control plane)  PDN GW Tunnel Endpoint Identifier for the S5/S8 interface for the control plane.    </description>
-       <syntax> <string/></syntax>
+
+      <parameter name="PdnGwTeidForS5S8" access="readWrite">
+       <description> (control plane) PDN GW Tunnel Endpoint Identifier
+       for the S5/S8 interface for the control plane.</description>
+      <syntax><dataType ref="TEID"/></syntax>
       </parameter>
-      <parameter name="MS Info Change Reporting Action   " access="readWrite">
-       <description> Need to communicate change in User Location Information to the PDN GW with this EPS bearer Context.  </description>
-       <syntax> <string/></syntax>
+
+      <parameter name="MsInfoChangeReportingAction" access="readWrite">
+       <description>Need to communicate change in User Location
+       Information to the PDN GW with this EPS bearer
+       Context.</description>
+       <syntax><string/></syntax>
       </parameter>
-      <parameter name="EPS subscribed QoS profile        " access="readWrite">
-       <description> The bearer level QoS parameter values for that APN's default bearer (QCI and ARP)                    </description>
-       <syntax> <string/></syntax>
+
+      <parameter name="EpsSubscribedQoSProfile" access="readWrite">
+       <description> The bearer level QoS parameter values for that
+       APN's default bearer (QCI and ARP)</description>
+       <syntax><string/></syntax>
       </parameter>
-      <parameter name="Subscribed APN-AMBR               " access="readWrite">
-       <description> The Maximum Aggregated uplink and downlink MBR values                                                </description>
-       <syntax> <string/></syntax>
+
+      <parameter name="SubscribedApnAmbr" access="readWrite">
+       <description> The Maximum Aggregated uplink and downlink MBR values</description>
+       <syntax><unsignedInt/></syntax>
       </parameter>
-      <parameter name="APN-AMBR                          " access="readWrite">
-       <description> The Maximum Aggregated uplink and downlink MBR, as decided by the PDN-GW.                            </description>
-       <syntax> <string/></syntax>
+
+      <parameter name="ApnAmbr" access="readWrite">
+       <description> The Maximum Aggregated uplink and downlink MBR,
+       as decided by the PDN-GW.</description>
+       <syntax><unsignedInt/></syntax>
       </parameter>
-      <parameter name="PDN GW GRE Key for uplink traffic " access="readWrite">
-       <description> (user plane)  PDN GW assigned GRE Key for the S5/S8 interface for the user plane for uplink traffic. </description>
-       <syntax> <string/></syntax>
+
+      <parameter name="PdnGwGreKeyForUplinkTraffic" access="readWrite">
+       <description> (user plane) PDN GW assigned GRE Key for the
+       S5/S8 interface for the user plane for uplink
+       traffic.</description>
+       <syntax><unsignedInt/></syntax>
       </parameter>
-      <parameter name="Default bearer                    " access="readWrite">
-       <description> Identifies the EPS Bearer Id of the default bearer within the given PDN connection.                  </description>
-       <syntax> <string/></syntax>
+
+      <parameter name="DefaultBearer" access="readWrite">
+       <description> Identifies the EPS Bearer Id of the default
+       bearer within the given PDN connection.</description>
+       <syntax><unsignedInt/></syntax>
       </parameter>
 
       <parameter name="BearerListNumberOfEntries" access="readOnly">
@@ -237,45 +309,54 @@ MME speceific small-cell.org vendor extension
       <object name="BearerList.{i}." access="readOnly" minEntries="0" maxEntries="unbounded" numEntriesParameter="BearerListNumberOfEntries">
        <description>For each bearer within the PDN connection</description>
 
+       <parameter name="EpsBearerId" access="readWrite">
+        <description> An EPS bearer identity uniquely identifies an EP
+        S bearer for one UE accessing via E-UTRAN</description>
+       <syntax><unsignedInt/></syntax>
+       </parameter>
 
-       <parameter name="EPS Bearer ID               " access="readWrite">
-        <description> An EPS bearer identity uniquely identifies an EP S bearer for one UE accessing via E-UTRAN </description>
+       <parameter name="TI" access="readWrite">
+        <description>Transaction Identifier</description>
+       <syntax><unsignedInt/></syntax>
+       </parameter>
+
+       <parameter name="IpAddressForS1u" access="readWrite">
+        <description> IP address of the S-GW for the S1-u interfaces.</description>
+       <syntax><dataType ref="IPAddress"/></syntax>
+       </parameter>
+
+       <parameter name="TeidForS1u" access="readWrite">
+        <description> Tunnel Endpoint Identifier of the S-GW for the
+        S1-u interface.</description>
+        <syntax><dataType ref="TEID"/></syntax>
+       </parameter>
+
+       <parameter name="PdnGwTeidForS5S8" access="readWrite">
+        <description> (user plane) P-GW Tunnel Endpoint Identifier for
+        the S5/S8 interface for the user plane.</description>
+        <syntax><dataType ref="TEID"/></syntax>
+       </parameter>
+
+       <parameter name="PdnGwIpAddressForS5S8" access="readWrite">
+        <description> (user plane) P GW IP address for user plane for
+        the S5/S8 interface for the user plane.</description>
+       <syntax><dataType ref="IPAddress"/></syntax>
+       </parameter>
+
+       <parameter name="EpsBearerQoS" access="readWrite">
+        <description> QCI and ARP optionally: GBR and MBR for GBR bearer</description>
         <syntax> <string/></syntax>
        </parameter>
-       <parameter name="TI                          " access="readWrite">
-        <description> Transaction Identifier                                                                     </description>
+       <parameter name="TFT" access="readWrite">
+        <description>Traffic Flow Template. (For PMIP-based S5/S8 only)</description>
         <syntax> <string/></syntax>
        </parameter>
-       <parameter name="IP address for S1-u         " access="readWrite">
-        <description> IP address of the S-GW for the S1-u interfaces.                                            </description>
-        <syntax> <string/></syntax>
-       </parameter>
-       <parameter name="TEID for S1u                " access="readWrite">
-        <description> Tunnel Endpoint Identifier of the S-GW for the S1-u interface.                             </description>
-        <syntax> <string/></syntax>
-       </parameter>
-       <parameter name="PDN GW TEID for S5/S8       " access="readWrite">
-        <description> (user plane)  P-GW Tunnel Endpoint Identifier for the S5/S8 interface for the user plane.  </description>
-        <syntax> <string/></syntax>
-       </parameter>
-       <parameter name="PDN GW IP address for S5/S8 " access="readWrite">
-        <description> (user plane)  P GW IP address for user plane for the S5/S8 interface for the user plane.   </description>
-        <syntax> <string/></syntax>
-       </parameter>
-       <parameter name="EPS bearer QoS              " access="readWrite">
-        <description> QCI and ARP optionally: GBR and MBR for GBR bearer                                         </description>
-        <syntax> <string/></syntax>
-       </parameter>
-       <parameter name="TFT                         " access="readWrite">
-        <description> Traffic Flow Template. (For PMIP-based S5/S8 only)                                         </description>
-        <syntax> <string/></syntax>
-       </parameter>
-      </object>       
-     </object>       
-    </object>       
+      </object>
+     </object> 
+    </object>
 
    </object>
   </object>
  </model>
- 
+
 </dm:document>

@@ -46,32 +46,32 @@ S-GW speceific small-cell.org vendor extension
     </parameter>
 
 
-    <parameter name="MSISDN                     " access="readWrite">
-     <description> The basic MSISDN of the UE. The presence is dictated by its storage in the HSS.              </description>
+    <parameter name="MSISDN" access="readWrite">
+     <description> The basic MSISDN of the UE. The presence is dictated by its storage in the HSS.</description>
      <syntax> <string/></syntax>
     </parameter>
-    <parameter name="MME TEID for S11           " access="readWrite">
-     <description> MME Tunnel Endpoint Identifier for the S11 interface                                         </description>
+    <parameter name="MME TEID for S11" access="readWrite">
+     <description> MME Tunnel Endpoint Identifier for the S11 interface</description>
      <syntax> <string/></syntax>
     </parameter>
-    <parameter name="MME IP address for S11     " access="readWrite">
-     <description> MME IP address the S11 interface.                                                            </description>
+    <parameter name="MME IP address for S11" access="readWrite">
+     <description> MME IP address the S11 interface.</description>
      <syntax> <string/></syntax>
     </parameter>
-    <parameter name="S-GW TEID for S11/S4       " access="readWrite">
-     <description> (control plane)  S-GW Tunnel Endpoint Identifier for the S11 Interface and the S4 Interface. </description>
+    <parameter name="S-GW TEID for S11/S4" access="readWrite">
+     <description> (control plane)  S-GW Tunnel Endpoint Identifier for the S11 Interface and the S4 Interface.</description>
      <syntax> <string/></syntax>
     </parameter>
-    <parameter name="S-GW IP address for S11/S4 " access="readWrite">
-     <description> (control plane)  S-GW IP address for the S11 interface and the S4 Interface.                 </description>
+    <parameter name="S-GW IP address for S11/S4" access="readWrite">
+     <description> (control plane)  S-GW IP address for the S11 interface and the S4 Interface.</description>
      <syntax> <string/></syntax>
     </parameter>
-    <parameter name="Last known Cell Id         " access="readWrite">
-     <description> This is the last location of the UE known by the network                                     </description>
+    <parameter name="Last known Cell Id" access="readWrite">
+     <description> This is the last location of the UE known by the network</description>
      <syntax> <string/></syntax>
     </parameter>
-    <parameter name="Last known Cell Id age     " access="readWrite">
-     <description> This is the age of the above UE location information                                         </description>
+    <parameter name="Last known Cell Id age" access="readWrite">
+     <description> This is the age of the above UE location information</description>
      <syntax> <string/></syntax>
     </parameter>
 
@@ -86,36 +86,36 @@ S-GW speceific small-cell.org vendor extension
     <object name="PDNConnectionList.{i}." access="readOnly" minEntries="0" maxEntries="unbounded" numEntriesParameter="PDNConnectionListNumberOfEntries">
      <description>For each PDN Connection</description>
 
-     <parameter name="APN in Use                        " access="readWrite">
-      <description> The APN currently used. APN Network Identifier and the APN Operator Identifier.                            </description>
+     <parameter name="APN in Use" access="readWrite">
+      <description> The APN currently used. APN Network Identifier and the APN Operator Identifier.</description>
       <syntax> <string/></syntax>
      </parameter>
-     <parameter name="P-GW Address in Use               " access="readWrite">
-      <description> (control plane)  The IP address of the P-GW currently used for sending control plane signalling.           </description>
+     <parameter name="P-GW Address in Use" access="readWrite">
+      <description> (control plane)  The IP address of the P-GW currently used for sending control plane signalling.</description>
       <syntax> <string/></syntax>
      </parameter>
-     <parameter name="P-GW TEID for S5/S8               " access="readWrite">
-      <description> (control plane)  P-GW Tunnel Endpoint Identifier for the S5/S8 interface for the control plane.            </description>
+     <parameter name="P-GW TEID for S5/S8" access="readWrite">
+      <description> (control plane)  P-GW Tunnel Endpoint Identifier for the S5/S8 interface for the control plane.</description>
       <syntax> <string/></syntax>
      </parameter>
-     <parameter name="P-GW Address in Use               " access="readWrite">
-      <description> (user plane)  The IP address of the P-GW currently used for sending user plane traffic.                    </description>
+     <parameter name="P-GW Address in Use" access="readWrite">
+      <description> (user plane)  The IP address of the P-GW currently used for sending user plane traffic.</description>
       <syntax> <string/></syntax>
      </parameter>
-     <parameter name="S-GW IP address for S5/S8         " access="readWrite">
-      <description> (control plane)  S-GW IP address for the S5/S8 for the control plane signalling.                           </description>
+     <parameter name="S-GW IP address for S5/S8" access="readWrite">
+      <description> (control plane)  S-GW IP address for the S5/S8 for the control plane signalling.</description>
       <syntax> <string/></syntax>
      </parameter>
-     <parameter name="S-GW TEID for S5/S8               " access="readWrite">
-      <description> (control plane)  S-GW Tunnel Endpoint Identifier for the S5/S8 control plane interface.                    </description>
+     <parameter name="S-GW TEID for S5/S8" access="readWrite">
+      <description> (control plane)  S-GW Tunnel Endpoint Identifier for the S5/S8 control plane interface.</description>
       <syntax> <string/></syntax>
      </parameter>
-     <parameter name="S-GW Address in Use               " access="readWrite">
-      <description> (user plane)  The IP address of the S-GW currently used for sending user plane traffic.                    </description>
+     <parameter name="S-GW Address in Use" access="readWrite">
+      <description> (user plane)  The IP address of the S-GW currently used for sending user plane traffic.</description>
       <syntax> <string/></syntax>
      </parameter>
-     <parameter name="Default Bearer                    " access="readWrite">
-      <description> Identifies the default bearer within the PDN connection by its EPS Bearer Id.                              </description>
+     <parameter name="Default Bearer" access="readWrite">
+      <description> Identifies the default bearer within the PDN connection by its EPS Bearer Id.</description>
       <syntax> <string/></syntax>
      </parameter>
 
@@ -131,48 +131,48 @@ S-GW speceific small-cell.org vendor extension
       <description>The following entries defining the EPS Bearer specific parameters are included within the set of parameters defining the PDN Connection.</description>
 
 
-      <parameter name="EPS Bearer Id                        " access="readWrite">
-       <description> An EPS bearer identity uniquely identifies an EPS bearer for one UE accessing via E-UTRAN </description>
+      <parameter name="EPS Bearer Id" access="readWrite">
+       <description> An EPS bearer identity uniquely identifies an EPS bearer for one UE accessing via E-UTRAN</description>
        <syntax> <string/></syntax>
       </parameter>
-      <parameter name="TFT                                  " access="readWrite">
-       <description> Traffic Flow Template                                                                     </description>
+      <parameter name="TFT" access="readWrite">
+       <description> Traffic Flow Template</description>
        <syntax> <string/></syntax>
       </parameter>
-      <parameter name="P-GW Address in Use                  " access="readWrite">
-       <description> (user plane)  The IP address of the P-GW currently used for sending user plane traffic.   </description>
+      <parameter name="P-GW Address in Use" access="readWrite">
+       <description> (user plane)  The IP address of the P-GW currently used for sending user plane traffic.</description>
        <syntax> <string/></syntax>
       </parameter>
-      <parameter name="P-GW TEID for S5/S8                  " access="readWrite">
-       <description> (user plane)  P-GW Tunnel Endpoint Identifier for the S5/S8 interface for the user plane. </description>
+      <parameter name="P-GW TEID for S5/S8" access="readWrite">
+       <description> (user plane)  P-GW Tunnel Endpoint Identifier for the S5/S8 interface for the user plane.</description>
        <syntax> <string/></syntax>
       </parameter>
-      <parameter name="S-GW IP address for S5/S8            " access="readWrite">
-       <description> (user plane)  S-GW IP address for user plane data received from PDN GW.                   </description>
+      <parameter name="S-GW IP address for S5/S8" access="readWrite">
+       <description> (user plane)  S-GW IP address for user plane data received from PDN GW.</description>
        <syntax> <string/></syntax>
       </parameter>
-      <parameter name="S-GW TEID for S5/S8                  " access="readWrite">
-       <description> (user plane)  S-GW Tunnel Endpoint Identifier for the S5/S8 interface for the user plane. </description>
+      <parameter name="S-GW TEID for S5/S8" access="readWrite">
+       <description> (user plane)  S-GW Tunnel Endpoint Identifier for the S5/S8 interface for the user plane.</description>
        <syntax> <string/></syntax>
       </parameter>
-      <parameter name="S-GW IP address for S1-u, S12 and S4 " access="readWrite">
-       <description> (user plane)  S-GW IP address for the S1-u interface (Used by the eNodeB)                 </description>
+      <parameter name="S-GW IP address for S1-u, S12 and S4" access="readWrite">
+       <description> (user plane)  S-GW IP address for the S1-u interface (Used by the eNodeB)</description>
        <syntax> <string/></syntax>
       </parameter>
-      <parameter name="S-GW TEID for S1-u, S12 and S4       " access="readWrite">
-       <description> (user plane)  S-GW Tunnel Endpoint Identifier for the S1-u interface                      </description>
+      <parameter name="S-GW TEID for S1-u, S12 and S4" access="readWrite">
+       <description> (user plane)  S-GW Tunnel Endpoint Identifier for the S1-u interface</description>
        <syntax> <string/></syntax>
       </parameter>
-      <parameter name="eNodeB IP address for S1-u           " access="readWrite">
-       <description> eNodeB IP address for the S1-u interface (Used by the S-GW).                              </description>
+      <parameter name="eNodeB IP address for S1-u" access="readWrite">
+       <description> eNodeB IP address for the S1-u interface (Used by the S-GW).</description>
        <syntax> <string/></syntax>
       </parameter>
-      <parameter name="eNodeB TEID for S1-u                 " access="readWrite">
-       <description> eNodeB Tunnel Endpoint Identifier for the S1-u interface.                                 </description>
+      <parameter name="eNodeB TEID for S1-u" access="readWrite">
+       <description> eNodeB Tunnel Endpoint Identifier for the S1-u interface.</description>
        <syntax> <string/></syntax>
       </parameter>
-      <parameter name="EPS Bearer QoS                       " access="readWrite">
-       <description> ARP, GBR, MBR, QCI.                                                                       </description>
+      <parameter name="EPS Bearer QoS" access="readWrite">
+       <description> ARP, GBR, MBR, QCI.</description>
        <syntax> <string/></syntax>
       </parameter>
 
