@@ -22,9 +22,14 @@ P-GW speceific small-cell.org vendor extension
 
  <model name="PGWService:1.0" isService="true">
   <object name="PGWService." access="readOnly" minEntries="1" maxEntries="1">
-   <object name="Capabilities." access="readOnly" minEntries="1" maxEntries="1">
-    <description>This object contains parameters relating to the hardware capabilities of the PGW server.</description>
-   </object> 
+  </object> 
+
+  <object name="PGWService.Capabilities." access="readOnly" minEntries="1" maxEntries="1">
+   <description>This object contains parameters relating to the hardware capabilities of the PGW server.</description>
+  </object> 
+
+  <object name="PGWService.BM." access="readOnly" minEntries="1" maxEntries="1">
+   <description>Bearer Management.</description>
 
    <parameter name="BearerContextListNumberOfEntries" access="readOnly">
     <description>{{numentries}}</description>
@@ -32,8 +37,9 @@ P-GW speceific small-cell.org vendor extension
      <unsignedInt />
     </syntax>
    </parameter> 
+  </object> 
    
-   <object name="BearerContextList.{i}." access="readOnly" minEntries="0" maxEntries="unbounded" numEntriesParameter="BearerContextListNumberOfEntries">
+  <object name="PGWService.BM.BearerContextList.{i}." access="readOnly" minEntries="0" maxEntries="unbounded" numEntriesParameter="BearerContextListNumberOfEntries">
     <description>P-GW EPS bearer context List</description>
     <uniqueKey>
      <parameter ref="IMSI" />
@@ -69,8 +75,9 @@ P-GW speceific small-cell.org vendor extension
       <unsignedInt />
      </syntax>
     </parameter>
+    </object>
 
-    <object name="APNList.{i}." access="readOnly" minEntries="0" maxEntries="unbounded" numEntriesParameter="APNListNumberOfEntries">
+    <object name="PGWService.BM.BearerContextList.{i}.APNList.{i}." access="readOnly" minEntries="0" maxEntries="unbounded" numEntriesParameter="APNListNumberOfEntries">
      <description>The following entries are repeated for each APN.</description>
 
 
@@ -90,11 +97,13 @@ P-GW speceific small-cell.org vendor extension
        <unsignedInt />
       </syntax>
      </parameter>
+    </object>
 
-     <object name="PDNConnectionList.{i}." access="readOnly" minEntries="0" maxEntries="unbounded" numEntriesParameter="PDNConnectionListNumberOfEntries">
+    <object name="PGWService.BM.BearerContextList.{i}.APNList.{i}.PDNConnectionList.{i}." access="readOnly" 
+            minEntries="0" maxEntries="unbounded" numEntriesParameter="PDNConnectionListNumberOfEntries">
       <description>The following entries are repeated for each PDN connection within the APN.</description>
 
-      <parameter name="IPAddress" access="readWrite">
+      <parameter name="IPAddress" access="readWrite"> 
        <description> IPv4 address and/or IPv6 prefix</description>
      <syntax><dataType ref="IPAddress"/></syntax>
       </parameter>
@@ -145,8 +154,11 @@ P-GW speceific small-cell.org vendor extension
         <unsignedInt />
        </syntax>
       </parameter>
+    </object>
 
-      <object name="EPSBearerList.{i}." access="readOnly" minEntries="0" maxEntries="unbounded" numEntriesParameter="EPSBearerListNumberOfEntries">
+    <object name="PGWService.BM.BearerContextList.{i}.APNList.{i}.PDNConnectionList.{i}.EPSBearerList.{i}." 
+            access="readOnly" minEntries="0" maxEntries="unbounded" numEntriesParameter="EPSBearerListNumberOfEntries">
+
        <description>The following entries defining the EPS Bearer
        specific parameters are included within the set of parameters
        defining the PDN Connection. The following entries are stored
@@ -191,11 +203,7 @@ P-GW speceific small-cell.org vendor extension
         <description> ARP, GBR, MBR, QCI.</description>
         <syntax> <string/></syntax>
        </parameter>
-      </object>
-     </object>
-    </object>
-   </object>
-  </object>
- </model>
+    </object>   
+   </model>
  
 </dm:document>

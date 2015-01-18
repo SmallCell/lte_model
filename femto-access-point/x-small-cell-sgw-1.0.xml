@@ -9,11 +9,11 @@ S-GW speceific small-cell.org vendor extension
              xsi:schemaLocation="urn:broadband-forum-org:cwmp:datamodel-1-3 cwmp-datamodel-1-3.xsd
                                  urn:broadband-forum-org:cwmp:datamodel-report-0-1 cwmp-datamodel-report.xsd"
              spec="urn:small-cell-org:x-small-cell-sgw-1-0">
+
  <description>SmallCell SGW Service Data Model (SGWService:1.0)</description>
+
  <import file="tr-106-1-0-types.xml" spec="urn:broadband-forum-org:tr-106-1-0">
   <dataType name="IPAddress" />
-  <dataType name="IPv4Address" />
-  <dataType name="Alias" />
  </import>
 
  <import file="x-small-cell-types-1-0.xml" spec="urn:broadband-forum-org:tr-106-1-0">
@@ -22,9 +22,14 @@ S-GW speceific small-cell.org vendor extension
 
  <model name="SGWService:1.0" isService="true">
   <object name="SGWService." access="readOnly" minEntries="1" maxEntries="1">
-   <object name="Capabilities." access="readOnly" minEntries="1" maxEntries="1">
+  </object>
+   
+  <object name="SGWService.Capabilities." access="readOnly" minEntries="1" maxEntries="1">
     <description>This object contains parameters relating to the hardware capabilities of the SGW server.</description>
-   </object>
+  </object>
+
+  <object name="SGWService.BM." access="readOnly" minEntries="1" maxEntries="1">
+   <description>Bearer Management.</description>
 
    <parameter name="BearerContextListNumberOfEntries" access="readOnly">
     <description>{{numentries}}</description>
@@ -32,8 +37,9 @@ S-GW speceific small-cell.org vendor extension
      <unsignedInt />
     </syntax>
    </parameter>
+  </object>
 
-   <object name="BearerContextList.{i}." access="readOnly" minEntries="0" maxEntries="unbounded" numEntriesParameter="BearerContextListNumberOfEntries">
+   <object name="SGWService.BM.BearerContextList.{i}." access="readOnly" minEntries="0" maxEntries="unbounded" numEntriesParameter="BearerContextListNumberOfEntries">
     <description>S-GW EPS bearer context List</description>
     <uniqueKey>
      <parameter ref="IMSI" />
@@ -95,8 +101,10 @@ S-GW speceific small-cell.org vendor extension
       <unsignedInt />
      </syntax>
     </parameter>
+    </object>
 
-    <object name="PDNConnectionList.{i}." access="readOnly" minEntries="0" maxEntries="unbounded" numEntriesParameter="PDNConnectionListNumberOfEntries">
+    <object name="SGWService.BM.BearerContextList.{i}.PDNConnectionList.{i}." access="readOnly" 
+            minEntries="0" maxEntries="unbounded" numEntriesParameter="PDNConnectionListNumberOfEntries">
      <description>For each PDN Connection</description>
 
      <parameter name="ApnInUse" access="readWrite">
@@ -143,8 +151,10 @@ S-GW speceific small-cell.org vendor extension
        <unsignedInt />
       </syntax>
      </parameter>
+     </object>
 
-     <object name="EPSBearerList.{i}." access="readOnly" minEntries="0" maxEntries="unbounded" numEntriesParameter="EPSBearerListNumberOfEntries">
+     <object name="SGWService.BM.BearerContextList.{i}.PDNConnectionList.{i}.EPSBearerList.{i}." 
+             access="readOnly" minEntries="0" maxEntries="unbounded" numEntriesParameter="EPSBearerListNumberOfEntries">
       <description>The following entries defining the EPS Bearer specific parameters are included within the set of parameters defining the PDN Connection.</description>
 
       <parameter name="EPSBearerId" access="readWrite">
@@ -209,10 +219,6 @@ S-GW speceific small-cell.org vendor extension
       </parameter>
 
      </object>
-    </object>
-
-   </object>
-  </object>
  </model>
 
 </dm:document>
