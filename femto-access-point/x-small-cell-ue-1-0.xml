@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ UE speceific small-cell.org vendor extension
+-->
+
+<dm:document xmlns:dm="urn:broadband-forum-org:cwmp:datamodel-1-3"
+             xmlns:dmr="urn:broadband-forum-org:cwmp:datamodel-report-0-1"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="urn:broadband-forum-org:cwmp:datamodel-1-3 cwmp-datamodel-1-3.xsd
+                                 urn:broadband-forum-org:cwmp:datamodel-report-0-1 cwmp-datamodel-report.xsd"
+             spec="urn:small-cell-org:x-small-cell-ue-1-0">
+
+ <description>SmallCell UE Service Data Model (UEService:1.0)</description>
+
+ <import file="tr-106-1-0-types.xml" spec="urn:broadband-forum-org:tr-106-1-0">
+  <dataType name="IPAddress" />
+ </import>
+
+ <import file="x-small-cell-types-1-0.xml" spec="urn:broadband-forum-org:tr-106-1-0">
+  <dataType name="TEID"/>
+ </import>
+
+ <model name="UEService:1.0" isService="true">
+
+  <object name="UEService." access="readOnly" minEntries="1" maxEntries="1">
+  </object>
+
+  <object name="UEService.Capabilities." access="readOnly" minEntries="1" maxEntries="1">
+   <description>This object contains parameters relating to the hardware capabilities of the UE server.</description>
+  </object>
+
+  <object name="UEService.UEContext." access="readOnly" minEntries="1" maxEntries="1">
+   <description>UE context</description>
+
+   <parameter name="IMSI" access="readWrite">
+    <description>IMSI (International Mobile Subscriber Identity) is the subscribers permanent identity.</description>
+    <syntax>
+     <string>
+      <size maxLength="15" />
+     </string>
+     <default type="object" value="" />
+    </syntax>
+   </parameter>
+
+   <parameter name="EmmState" access="readWrite">
+    <description> Mobility management state EMM-REGISTERED, EMM-DEREGISTERED.</description>
+    <syntax>
+     <string>
+      <enumeration value="EMM-REGISTERED"/>
+      <enumeration value="EMM-DEREGISTERED"/>
+     </string>
+    </syntax>
+   </parameter>
+
+   <parameter name="GUTI" access="readWrite">
+    <description> Globally Unique Temporary Identity.</description>
+    <syntax> <string/></syntax>
+   </parameter>
+
+   <parameter name="MeIdentity" access="readWrite">
+    <description> Mobile Equipment Identity - (e.g. IMEI/IMEISV) Software Version Number.</description>
+    <syntax> <string/></syntax>
+   </parameter>
+
+   <parameter name="Tracking Area List" access="readWrite">
+    <description>Current Tracking area list.</description>
+    <syntax> <string/></syntax>
+   </parameter>
+
+   <parameter name="LastVisitedTai" access="readWrite">
+    <description>A TAI which is contained in the TA list the UE registered to the network</description>
+    <syntax><string/></syntax>
+   </parameter>
+
+   <parameter name="SelectedNasAlgorithm" access="readWrite">
+    <description> Selected NAS security algorithm.</description>
+    <syntax> <string/></syntax>
+   </parameter>
+
+   <parameter name="SelectedAsAlgorithm" access="readWrite">
+    <description> Selected AS security algorithms.</description>
+    <syntax> <string/></syntax>
+   </parameter>
+
+   <parameter name="KSI_ASME" access="readWrite">
+    <description> Key Set Identifier for the main key KASME.</description>
+    <syntax> <string/></syntax>
+   </parameter>
+
+   <parameter name="K_ASME" access="readWrite">
+    <description> Main key for E-UTRAN key hierarchy based on CK, IK and Serving network identity.</description>
+    <syntax> <string/></syntax>
+   </parameter>
+
+   <parameter name="NasKeysAndCount" access="readWrite">
+    <description> KNASint, KNASenc, and NAS COUNT parameter.</description>
+    <syntax> <string/></syntax>
+   </parameter>
+
+   <parameter name="EUtranUtranKeySetflag" access="readWrite">
+    <description> Indicates whether the UE is using security keys
+    derived from UTRAN or E-UTRAN security association</description>
+    <syntax> <string/></syntax>
+   </parameter>
+
+   <parameter name="TIN" access="readWrite">
+    <description> Temporary Identity Used in Next update (TIN) in the
+    Attach Request and RAU/TAU Request</description>
+    <syntax> <string/></syntax>
+   </parameter>
+
+   <parameter name="UESpecificDrxParameters" access="readWrite">
+    <description> Preferred E-UTRAN DRX cycle length</description>
+    <syntax> <string/></syntax>
+   </parameter>
+
+   <parameter name="PDNConnectionListNumberOfEntries" access="readOnly">
+    <description>{{numentries}}</description>
+    <syntax>
+     <unsignedInt />
+    </syntax>
+   </parameter>
+  </object>
+
+  <object name="UEService.UEContext.BearerContextList.{i}.PDNConnectionList.{i}." access="readOnly"
+          minEntries="0" maxEntries="unbounded" numEntriesParameter="PDNConnectionListNumberOfEntries">
+   <description>For each PDN Connection</description>
+
+   <parameter name="ApnInUse" access="readWrite">
+    <description> The APN currently used. APN Network Identifier and
+    the APN Operator Identifier.</description>
+    <syntax> <string/></syntax>
+   </parameter>
+
+   <parameter name="ApnAmbr" access="readWrite">
+    <description> The maximum aggregated uplink and downlink MBR to be shared across all NonGBR bearers.</description>
+    <syntax> <string/></syntax>
+   </parameter>
+
+   <parameter name="AssignedPdnType" access="readWrite">
+    <description> The PDN Type assigned by the network (IPv4, IPv6, or IPv4v6).</description>
+    <syntax> <string/></syntax>
+   </parameter>
+
+   <parameter name="IPAddress" access="readWrite">
+    <description> IPv4 address and/or IPv6 prefix</description>
+    <syntax><dataType ref="IPAddress"/></syntax>
+   </parameter>
+
+   <parameter name="DefaultBearer" access="readWrite">
+    <description> Identifies the default bearer within the PDN
+    connection by its EPS Bearer Id.</description>
+    <syntax> <string/></syntax>
+   </parameter>
+
+   <parameter name="EPSBearerListNumberOfEntries" access="readOnly">
+    <description>{{numentries}}</description>
+    <syntax>
+     <unsignedInt />
+    </syntax>
+   </parameter>
+  </object>
+
+  <object name="UEService.UEContext.BearerContextList.{i}.PDNConnectionList.{i}.EPSBearerList.{i}."
+          access="readOnly" minEntries="0" maxEntries="unbounded" numEntriesParameter="EPSBearerListNumberOfEntries">
+   <description>The following entries defining the EPS Bearer
+   specific parameters are included within the set of parameters
+   defining the PDN Connection.</description>
+
+   <parameter name="EPSBearerId" access="readWrite">
+    <description> An EPS bearer identity uniquely identifies an EPS
+    bearer for one UE accessing via E-UTRAN.</description>
+    <syntax><unsignedInt/></syntax>
+   </parameter>
+
+   <parameter name="TI" access="readWrite">
+    <description>Transaction Identifier</description>
+    <syntax> <string/></syntax>
+   </parameter>
+
+   <parameter name="EPSBearerQoS" access="readWrite">
+    <description> GBR and MBR for GBR bearer.</description>
+    <syntax> <string/></syntax>
+   </parameter>
+
+   <parameter name="TFT" access="readWrite">
+    <description> Traffic Flow Template</description>
+    <syntax><string/></syntax>
+   </parameter>
+  </object>
+ </model>
+
+</dm:document>
