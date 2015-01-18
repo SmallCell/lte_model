@@ -302,8 +302,8 @@
    - [X] Define FAP DM. UTRA example [[http://tr069.wordpress.com/2013/07/11/tr-review-tr-196-issue-2-femto-access-point-service-data-model/][here]].
    - [X] Defaine dummy vendor extension like in x-cate181.xml.
 
-
- 
+** TODO Paired UE X2AP IDs needed to distinguish UEs over the X2 Interface
+   http://www.netmanias.com/en/post/techdocs/5905/lte-identification-i-ue-and-me-identifiers
 
 * org-config                                                        :ARCHIVE:
 #+STARTUP: content hidestars logdone

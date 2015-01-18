@@ -44,28 +44,33 @@ HSS speceific small-cell.org vendor extension
      </syntax>
     </parameter>
 
-
-    <parameter name="IMEI / IMEISV" access="readWrite">
+    <parameter name="ImeiImeisv" access="readWrite">
      <description> International Mobile Equipment Identity - Software Version Number</description>
-     <syntax> <string/></syntax>
+     <syntax><string/></syntax>
     </parameter>
-    <parameter name="MME Address" access="readWrite">
+
+    <parameter name="MMEAddress" access="readWrite">
      <description> The IP address of the MME currently serving this MS.</description>
-     <syntax> <string/></syntax>
+     <syntax><dataType ref="IPAddress"/></syntax>
     </parameter>
-    <parameter name="MS PS Purged from EPS" access="readWrite">
-     <description> Indicates that the EMM and ESM contexts of the UE are deleted from the MME.</description>
-     <syntax> <string/></syntax>
+
+    <parameter name="MsPsPurgedFromEps" access="readWrite">
+     <description> Indicates that the EMM and ESM contexts of the UE
+     are deleted from the MME.</description>
+     <syntax> <boolean/></syntax>
     </parameter>
-    <parameter name="ODB parameters" access="readWrite">
+
+    <parameter name="OdbParameters" access="readWrite">
      <description> Indicates that the status of the operator determined barring</description>
      <syntax> <string/></syntax>
     </parameter>
-    <parameter name="URRP-MME" access="readWrite">
-     <description> UE Reachability Request Parameter indicating that UE activity notification from</description>
+
+    <parameter name="UrrpMme" access="readWrite">
+     <description>UE Reachability Request Parameter indicating that UE
+     activity notification from MME has been requested by the
+     HSS.</description>
      <syntax> <string/></syntax>
     </parameter>
-
 
     <parameter name="SubscriptionProfileListNumberOfEntries" access="readOnly">
      <description>{{numentries}}</description>
@@ -77,34 +82,40 @@ HSS speceific small-cell.org vendor extension
     <object name="SubscriptionProfileList.{i}." access="readOnly" minEntries="0" maxEntries="unbounded" numEntriesParameter="SubscriptionProfileListNumberOfEntries">
      <description>Each subscription profile contains one or more PDN subscription contexts</description>
 
-     <parameter name="Context Identifier" access="readWrite">
+     <parameter name="ContextIdentifier" access="readWrite">
       <description> Index of the PDN subscription context.</description>
-      <syntax> <string/></syntax>
+      <syntax> <unsignedInt/></syntax>
      </parameter>
-     <parameter name="PDN Address" access="readWrite">
+
+     <parameter name="PdnAddress" access="readWrite">
       <description> Indicates subscribed IP address(es).</description>
-      <syntax> <string/></syntax>
+     <syntax><dataType ref="IPAddress"/></syntax>
      </parameter>
-     <parameter name="PDN Type" access="readWrite">
+
+     <parameter name="PdnType" access="readWrite">
       <description> Indicates the subscribed PDN Type (IPv4, IPv6, IPv4v6)</description>
       <syntax> <string/></syntax>
      </parameter>
-     <parameter name="Access Point Name (APN)" access="readWrite">
-      <description> A label according to DNS naming conventions</description>
+
+     <parameter name="APN" access="readWrite">
+      <description>Access Point Name. A label according to DNS naming conventions</description>
       <syntax> <string/></syntax>
      </parameter>
-     <parameter name="EPS subscribed QoS profile" access="readWrite">
+
+     <parameter name="EpsSubscribedQoSProfile" access="readWrite">
       <description> The bearer level QoS parameter values for that APN's default bearer</description>
       <syntax> <string/></syntax>
      </parameter>
-     <parameter name="Subscribed-APN-AMBR" access="readWrite">
+     <parameter name="SubscribedApnAmbr" access="readWrite">
       <description> The maximum aggregated uplink and downlink MBRs</description>
-      <syntax> <string/></syntax>
+      <syntax> <unsignedInt/></syntax>
      </parameter>
-     <parameter name="PDN GW identity" access="readWrite">
+
+     <parameter name="PdnGwidentity" access="readWrite">
       <description> The identity of the PDN GW used for this APN.</description>
-      <syntax> <string/></syntax>
+     <syntax><dataType ref="IPAddress"/></syntax>
      </parameter>
+
     </object>
    </object>
 

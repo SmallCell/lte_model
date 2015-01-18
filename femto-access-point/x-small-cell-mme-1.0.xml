@@ -27,6 +27,18 @@ MME speceific small-cell.org vendor extension
    <object name="Capabilities." access="readOnly" minEntries="1" maxEntries="1">
     <description>This object contains parameters relating to the hardware capabilities of the MME server.</description>
    </object>
+
+    <parameter name="MMEGI" access="readOnly">
+     <description>MME Group Identifier. Unique within a PLMN. 16 bits.</description>
+     <syntax><unsignedInt /> </syntax>
+    </parameter>
+
+    <parameter name="MMEC" access="readOnly">
+     <description>MME Code. To identify a MME uniquely within a MME Group. S-TMSI contains MMEC. 8 bits.</description>
+     <syntax><unsignedInt /> </syntax>
+    </parameter>
+
+
    <object name="MobilityManagement." access="readOnly" minEntries="1" maxEntries="1">
     <description>The MME maintains MM context and EPS bearer context information for UEs in the ECM-IDLE, ECM-CONNECTED and EMM-DEREGISTERED states. </description>
 
@@ -103,8 +115,7 @@ MME speceific small-cell.org vendor extension
      </parameter>
 
      <parameter name="ECGIAge" access="readWrite">
-      <description> Time elapsed since the last E-UTRAN Cell Global
-      Identity was acquired.</description>
+      <description> Time elapsed since the last E-UTRAN Cell Global Identity was acquired.</description>
       <syntax> <string/></syntax>
      </parameter>
 
