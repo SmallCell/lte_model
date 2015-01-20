@@ -43,7 +43,8 @@ test:
 	# $(REPORT) -report=text x-small-cell-sgw-1.0.xml
 	# $(REPORT) -report=text x-small-cell-pgw-1.0.xml
 	# $(REPORT) -report=text x-small-cell-hss-1.0.xml
-	$(REPORT) -report=text x-small-cell-ue-1-0.xml
+	# $(REPORT) -report=text x-small-cell-ue-1-0.xml
+	$(REPORT) -report=text x-small-cell-enb-1.0.xml
 	# $(REPORT) -report=text ../base/cwmp/tr-196-2-0-1.xml
 
 clean:

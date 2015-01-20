@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Small Cell Data Model Data Types
+  Creates representation for opaque data type instantiated elsewere in the code.
+-->
+
+<dm:document xmlns:dm="urn:broadband-forum-org:cwmp:datamodel-1-4"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="urn:broadband-forum-org:cwmp:datamodel-1-4
+                                    http://www.broadband-forum.org/cwmp/cwmp-datamodel-1-4.xsd"
+             spec="urn:small-cell-org:x-small-cell-types-1-0">
+
+<!-- 
+
+ -->
+  <dataType name="TEID">
+    <description>Tunnel End Point identifier. To identify the end
+    point of a GTP tunnel when the tunnel is established. 32 bits
+    </description>
+    <unsignedInt/>
+  </dataType>
+
+</dm:document>
