@@ -62,7 +62,7 @@
     <syntax> <string/></syntax>
    </parameter>
 
-   <parameter name="Tracking Area List" access="readWrite">
+   <parameter name="TaiList" access="readWrite">
     <description>Current Tracking area list.</description>
     <syntax> <string/></syntax>
    </parameter>
@@ -122,7 +122,7 @@
    </parameter>
   </object>
 
-  <object name="UEService.UEContext.BearerContextList.{i}.PDNConnectionList.{i}." access="readOnly"
+  <object name="UEService.UEContext.PDNConnectionList.{i}." access="readOnly"
           minEntries="0" maxEntries="unbounded" numEntriesParameter="PDNConnectionListNumberOfEntries">
    <description>For each PDN Connection</description>
 
@@ -160,8 +160,8 @@
     </syntax>
    </parameter>
   </object>
-
-  <object name="UEService.UEContext.BearerContextList.{i}.PDNConnectionList.{i}.EPSBearerList.{i}."
+ 
+  <object name="UEService.UEContext.PDNConnectionList.{i}.EPSBearerList.{i}."
           access="readOnly" minEntries="0" maxEntries="unbounded" numEntriesParameter="EPSBearerListNumberOfEntries">
    <description>The following entries defining the EPS Bearer
    specific parameters are included within the set of parameters
