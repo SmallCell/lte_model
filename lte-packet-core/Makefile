@@ -21,15 +21,9 @@ doc: $(TARGETS-DOC)
 
 gen-hrl: $(TARGETS-HRL)
 	cp $(TARGETS-HRL) ../include
-	# $(REPORT) --plugin=hrl --report=hrl x-small-cell-ue-1-0.xml
 
 test:
 	@echo "Do nothing usefull"
-	# $(REPORT) -report=text x-small-cell-mme-1.0.xml
-	# $(REPORT) -report=text x-small-cell-sgw-1.0.xml
-	# $(REPORT) -report=text x-small-cell-pgw-1.0.xml
-	# $(REPORT) -report=text x-small-cell-hss-1.0.xml
-	# $(REPORT) -report=text x-small-cell-ue-1-0.xml
 	$(REPORT) -report=text x-small-cell-ue-1.0.xml
 
 clean:

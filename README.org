@@ -5,7 +5,6 @@
 * Overview
   - [[http://www.broadband-forum.org/cwmp.php][CPE WAN Management Protocol (CWMP)]]
   
-
 * Tools 
   - The script parses, validates and reports data model definitions
     compliant with the cwmp:datamodel (DM) XML schema.
@@ -14,7 +13,6 @@
   - catawampus.org PY Scripts usefull for code generation from
     model. Also has usefull DM vendor extension examples.
     https://gfiber.googlesource.com/vendor/google/catawampus/+/newkernel_dev
-
 
 * CPE models
   TS 32.594 for LTE FAP
@@ -295,7 +293,6 @@
 
 
 
-
 ** DONE FEMTO FAP model on Device:2 root [3/3]
    CLOSED: [2015-01-12 Mon 20:27]
    - [X] Model validation using report.pl
@@ -304,6 +301,221 @@
 
 ** TODO Paired UE X2AP IDs needed to distinguish UEs over the X2 Interface
    http://www.netmanias.com/en/post/techdocs/5905/lte-identification-i-ue-and-me-identifiers
+
+* EPC Model
+  ref: http://www.qtc.jp/3GPP/Specs/23401-870.pdf
+** MME Mobility-Management Entity
+*** Information storage
+**** MME MM
+     | Field                        | Description                                                                                                     |
+     |------------------------------+-----------------------------------------------------------------------------------------------------------------|
+     | IMSI                         | IMSI (International Mobile Subscriber Identity) is the subscribers permanent identity.                          |
+     | MSISDN                       | The basic MSISDN of the UE. The presence is dictated by its storage in the HSS.                                 |
+     | MM State                     | Mobility management state ECM-IDLE, ECM-CONNECTED, EMM-DEREGISTERED.                                            |
+     | GUTI                         | Globally Unique Temporary Identity.                                                                             |
+     | ME Identity                  | Mobile Equipment Identity - (e.g. IMEI/IMEISV) Software Version Number                                          |
+     | Tracking Area List           | Current Tracking area list TAI of last TAU  TAI of the TA in which the last Tracking Area Update was initiated. |
+     | E-UTRAN Cell Global Identity | Last known E-UTRAN cell                                                                                         |
+     | E-UTRAN Cell Identity Age    | Time elapsed since the last E-UTRAN Cell Global Identity was acquired                                           |
+     | Authentication Vector        | Temporary authentication and key agreement data that enables an MME to engage in AKA with a particular user.    |
+     |                              | a) network challenge RAND,                                                                                      |
+     |                              | b) an expected response XRES,                                                                                   |
+     |                              | c) Key KASME,                                                                                                   |
+     |                              | d) a network authentication token AUTN.                                                                         |
+     | UE Network Capability        | UE network capabilities including security algorithms and key derivation functions                              |
+     | UE Specific DRX Parameters   | UE specific DRX parameters for A/Gb mode, Iu mode and S1-mode                                                   |
+     | Selected NAS Algorithm       | Selected NAS security algorithm                                                                                 |
+     | Selected AS Algorithm        | Selected AS security algorithms.                                                                                |
+     | KSI_ASME                     | Key Set Identifier for the main key K_ASME                                                                      |
+     | K_ASME                       | Main key for E-UTRAN key hierarchy based on CK, IK and Serving network identity                                 |
+     | NAS Keys and COUNT           | KNASint, K_NASenc, and NAS COUNT parameter.                                                                     |
+     | E-UTRAN/UTRAN Key Set flag   | Indicates whether the UE is using security keys derived from UTRAN or E-UTRAN security association              |
+     | Recovery                     | Indicates if the HSS is performing database recovery.                                                           |
+     | MME IP address for S11       | MME IP address for the S11 interface (used by S-GW)                                                             |
+     | MME TEID for S11             | MME Tunnel Endpoint Identifier for S11 interface.                                                               |
+     | S-GW IP address for S11/S4   | S-GW IP address for the S11 and S4 interfaces                                                                   |
+     | S-GW TEID for S11/S4         | S-GW Tunnel Endpoint Identifier for the S11 and S4 interfaces.                                                  |
+     | eNodeB Address in Use        | The IP address of the eNodeB currently used for control plane signalling.                                       |
+     | eNB UE S1AP ID               | Unique identity of the UE within eNodeB.                                                                        |
+     | MME UE S1AP ID               | Unique identity of the UE within MME.                                                                           |
+     | Subscribed UE-AMBR           | The Maximum Aggregated uplink and downlink MBR values to be shared across all Non-GBR bearers.                  |
+     | UE-AMBR                      | The currently used Maximum Aggregated uplink and downlink MBR values                                            |
+     | RFSP Index in Use            | An index to specific RRM configuration in the E-UTRAN that is currently in use.                                 |
+     | URRP-MME                     | URRP-MME indicating for HSS regarding UE reachability at the MME                                                |
+**** For each active PDN connection: 
+     | Field                             | Description                                                                                          |
+     |-----------------------------------+------------------------------------------------------------------------------------------------------|
+     | APN in Use                        | The APN currently used.                                                                              |
+     | APN Subscribed                    | The subscribed APN received from the HSS.                                                            |
+     | APN Restriction                   | Denotes the restriction on this EPS bearer Context.                                                  |
+     | PDN Type                          | IPv4, IPv6 or IPv4v6                                                                                 |
+     | IP Address(es)                    | IPv4 address and/or IPv6 prefix                                                                      |
+     | PDN GW Address in Use             | (control plane)  The IP address of the PDN GW currently used for sending control plane signalling.   |
+     | PDN GW TEID for S5/S8             | (control plane)  PDN GW Tunnel Endpoint Identifier for the S5/S8 interface for the control plane.    |
+     |                                   |                                                                                                      |
+     | MS Info Change Reporting Action   | Need to communicate change in User Location Information to the PDN GW with this EPS bearer Context.  |
+     | EPS subscribed QoS profile        | The bearer level QoS parameter values for that APN's default bearer (QCI and ARP)                    |
+     |                                   |                                                                                                      |
+     | Subscribed APN-AMBR               | The Maximum Aggregated uplink and downlink MBR values                                                |
+     | APN-AMBR                          | The Maximum Aggregated uplink and downlink MBR, as decided by the PDN-GW.                            |
+     | PDN GW GRE Key for uplink traffic | (user plane)  PDN GW assigned GRE Key for the S5/S8 interface for the user plane for uplink traffic. |
+     | Default bearer                    | Identifies the EPS Bearer Id of the default bearer within the given PDN connection.                  |
+**** For each bearer within the PDN connection: 
+     | Field                       | Description                                                                                |
+     |-----------------------------+--------------------------------------------------------------------------------------------|
+     | EPS Bearer ID               | An EPS bearer identity uniquely identifies an EP S bearer for one UE accessing via E-UTRAN |
+     | TI                          | Transaction Identifier                                                                     |
+     | IP address for S1-u         | IP address of the S-GW for the S1-u interfaces.                                            |
+     | TEID for S1u                | Tunnel Endpoint Identifier of the S-GW for the S1-u interface.                             |
+     | PDN GW TEID for S5/S8       | (user plane)  P-GW Tunnel Endpoint Identifier for the S5/S8 interface for the user plane.  |
+     | PDN GW IP address for S5/S8 | (user plane)  P GW IP address for user plane for the S5/S8 interface for the user plane.   |
+     | EPS bearer QoS              | QCI and ARP optionally: GBR and MBR for GBR bearer                                         |
+     | TFT                         | Traffic Flow Template. (For PMIP-based S5/S8 only)                                         |
+
+** HSS Home Subscriber Server
+*** Information storage 
+    IMSI is the prime key to the data stored in the HSS.
+    3GPP TS 23.401 V8.7.0 (2009-09) 
+**** Data
+    | Field                 | Description                                                                     |
+    |-----------------------+---------------------------------------------------------------------------------|
+    | IMSI                  | IMSI is the main reference key.                                                 |
+    | IMEI / IMEISV         | International Mobile Equipment Identity - Software Version Number               |
+    | MME Address           | The IP address of the MME currently serving this MS.                            |
+    | MS PS Purged from EPS | Indicates that the EMM and ESM contexts of the UE are deleted from the MME.     |
+    | ODB parameters        | Indicates that the status of the operator determined barring                    |
+    | URRP-MME              | UE Reachability Request Parameter indicating that UE activity notification from |
+
+**** Each subscription profile contains one or more PDN subscription contexts: 
+    | Field                      | Description                                                         |
+    |----------------------------+---------------------------------------------------------------------|
+    | Context Identifier         | Index of the PDN subscription context.                              |
+    | PDN Address                | Indicates subscribed IP address(es).                                |
+    | PDN Type                   | Indicates the subscribed PDN Type (IPv4, IPv6, IPv4v6)              |
+    | Access Point Name (APN)    | A label according to DNS naming conventions                         |
+    | EPS subscribed QoS profile | The bearer level QoS parameter values for that APN's default bearer |
+    | Subscribed-APN-AMBR        | The maximum aggregated uplink and downlink MBRs                     |
+    | PDN GW identity            | The identity of the PDN GW used for this APN.                       |
+
+** S-Gw Serving Gataway
+*** Information storage
+**** S-GW EPS bearer context
+
+    | Field                      | Description                                                                                  |
+    |----------------------------+----------------------------------------------------------------------------------------------|
+    | IMSI                       | IMSI (International Mobile Subscriber Identity) is the subscriber permanent identity.        |
+    | MSISDN                     | The basic MSISDN of the UE. The presence is dictated by its storage in the HSS.              |
+    | MME TEID for S11           | MME Tunnel Endpoint Identifier for the S11 interface                                         |
+    | MME IP address for S11     | MME IP address the S11 interface.                                                            |
+    | S-GW TEID for S11/S4       | (control plane)  S-GW Tunnel Endpoint Identifier for the S11 Interface and the S4 Interface. |
+    | S-GW IP address for S11/S4 | (control plane)  S-GW IP address for the S11 interface and the S4 Interface.                 |
+    | Last known Cell Id         | This is the last location of the UE known by the network                                     |
+    | Last known Cell Id age     | This is the age of the above UE location information                                         |
+**** For each PDN Connection: 
+
+    | Field                             | Description                                                                                                |
+    |-----------------------------------+------------------------------------------------------------------------------------------------------------|
+    | APN in Use                        | The APN currently used. APN Network Identifier and the APN Operator Identifier.                            |
+    | P-GW Address in Use               | (control plane)  The IP address of the P-GW currently used for sending control plane signalling.           |
+    | P-GW TEID for S5/S8               | (control plane)  P-GW Tunnel Endpoint Identifier for the S5/S8 interface for the control plane.            |
+    | P-GW Address in Use               | (user plane)  The IP address of the P-GW currently used for sending user plane traffic.                    |
+    | S-GW IP address for S5/S8         | (control plane)  S-GW IP address for the S5/S8 for the control plane signalling.                           |
+    | S-GW TEID for S5/S8               | (control plane)  S-GW Tunnel Endpoint Identifier for the S5/S8 control plane interface.                    |
+    | S-GW Address in Use               | (user plane)  The IP address of the S-GW currently used for sending user plane traffic.                    |
+    | Default Bearer                    | Identifies the default bearer within the PDN connection by its EPS Bearer Id.                              |
+**** For each EPS Bearer within the PDN Connection: 
+     The following entries defining the EPS Bearer specific parameters are included within the set of parameters defining the PDN Connection. 
+
+    | Field                                | Description                                                                               |
+    |--------------------------------------+-------------------------------------------------------------------------------------------|
+    | EPS Bearer Id                        | An EPS bearer identity uniquely identifies an EPS bearer for one UE accessing via E-UTRAN |
+    | TFT                                  | Traffic Flow Template                                                                     |
+    | P-GW Address in Use                  | (user plane)  The IP address of the P-GW currently used for sending user plane traffic.   |
+    | P-GW TEID for S5/S8                  | (user plane)  P-GW Tunnel Endpoint Identifier for the S5/S8 interface for the user plane. |
+    | S-GW IP address for S5/S8            | (user plane)  S-GW IP address for user plane data received from PDN GW.                   |
+    | S-GW TEID for S5/S8                  | (user plane)  S-GW Tunnel Endpoint Identifier for the S5/S8 interface for the user plane. |
+    | S-GW IP address for S1-u, S12 and S4 | (user plane)  S-GW IP address for the S1-u interface (Used by the eNodeB)                 |
+    | S-GW TEID for S1-u, S12 and S4       | (user plane)  S-GW Tunnel Endpoint Identifier for the S1-u interface                      |
+    | eNodeB IP address for S1-u           | eNodeB IP address for the S1-u interface (Used by the S-GW).                              |
+    | eNodeB TEID for S1-u                 | eNodeB Tunnel Endpoint Identifier for the S1-u interface.                                 |
+    | EPS Bearer QoS                       | ARP, GBR, MBR, QCI.                                                                       |
+
+** P-GW PDN Gateaway
+*** Information storage
+**** P-GW context 
+    | Field    | Description                                                                           |
+    |----------+---------------------------------------------------------------------------------------|
+    | IMSI     | IMSI (International Mobile Subscriber Identity) is the subscriber permanent identity. |
+    | MSISDN   | The basic MSISDN of the UE. The presence is dictated by its storage in the HSS.       |
+    | RAT type | Current RAT                                                                           |
+**** For each APN in use:
+     The following entries are repeated for each APN. 
+    | Field      | Description                                           |
+    |------------+-------------------------------------------------------|
+    | APN in use | The APN currently used.                               |
+    | APN-AMBR   | The maximum aggregated uplink and downlink MBR values |
+**** For each PDN Connection within the APN: 
+     
+    | Field                               | Description                                                                                        |
+    |-------------------------------------+----------------------------------------------------------------------------------------------------|
+    | IP Address(es)                      | IPv4 address and/or IPv6 prefix                                                                    |
+    | PDN type                            | IPv4, IPv6, or IPv4v6                                                                              |
+    | S-GW Address in Use                 | (control plane)  The IP address of the S-GW currently used for sending control plane signalling.   |
+    | S-GW TEID for S5/S8                 | (control plane)  S-GW Tunnel Endpoint Identifier for the S5/S8 interface for the control plane.    |
+    | P-GW IP address for S5/S8           | (control plane)  P-GW IP address for the S5/S8 for the control plane signalling.                   |
+    | P-GW TEID for S5/S8 (control plane) | P-GW Tunnel Endpoint Identifier for the S5/S8 control plane interface. (For GTP-based S5/S8 only). |
+    | BCM                                 | The negotiated Bearer Control Mode for GERAN/UTRAN.                                                |
+    | Default Bearer                      | Identifies the default bearer within the PDN connection by its EPS Bearer Id.                      |
+**** For each EPS Bearer within the PDN Connection: 
+     The following entries defining the EPS Bearer specific parameters are included within the set of parameters 
+     defining the PDN Connection. 
+     The following entries are stored only for GTP-based S5/S8. 
+
+    | Field                     | Description                                                                                     |
+    |---------------------------+-------------------------------------------------------------------------------------------------|
+    | EPS Bearer Id             | An EPS bearer identity uniquely identifies an EPS bearer for one UE accessing via E-UTRAN       |
+    | TFT                       | Traffic Flow Template                                                                           |
+    | S-GW Address in Use       | (user plane)  The IP address of the S-GW currently used for sending user plane traffic.         |
+    | S-GW TEID for S5/S8       | (user plane)  S-GW Tunnel Endpoint Identifier for the S5/S8 interface for the user plane.       |
+    | P-GW IP address for S5/S8 | (user plane)  P-GW IP address for user plane data received from PDN GW.                         |
+    | P-GW TEID for S5/S8       | (user plane)  P-GW Tunnel Endpoint Identifier for the GTP Based S5/S8 interface for user plane. |
+    | EPS Bearer QoS            | ARP, GBR, MBR, QCI.                                                                             |
+
+** UE
+*** Information storage
+**** UE context 
+    | Field                      | Description                                                                                        |
+    |----------------------------+----------------------------------------------------------------------------------------------------|
+    | IMSI                       | IMSI (International Mobile Subscriber Identity) is the subscribers permanent identity.             |
+    | EMM State                  | Mobility management state EMM-REGISTERED, EMM-DEREGISTERED.                                        |
+    | GUTI                       | Globally Unique Temporary Identity.                                                                |
+    | ME Identity                | Mobile Equipment Identity - (e.g. IMEI/IMEISV) Software Version Number.                            |
+    | Tracking Area List         | Current Tracking area list.                                                                        |
+    | Last visited TAI           | A TAI which is contained in the TA list the UE registered to the network                           |
+    | Selected NAS Algorithm     | Selected NAS security algorithm.                                                                   |
+    | Selected AS Algorithm      | Selected AS security algorithms.                                                                   |
+    | KSI_ASME                   | Key Set Identifier for the main key KASME.                                                         |
+    | K_ASME                     | Main key for E-UTRAN key hierarchy based on CK, IK and Serving network identity.                   |
+    | NAS Keys and COUNT         | KNASint, KNASenc, and NAS COUNT parameter.                                                         |
+    | E-UTRAN/UTRAN Key Set flag | Indicates whether the UE is using security keys derived from UTRAN or E-UTRAN security association |
+    | Temporary Identity         | Used in Next update (TIN) in the Attach Request and RAU/TAU Request                                |
+    | UE Specific DRX Parameters | Preferred E-UTRAN DRX cycle length                                                                 |
+
+**** For each active PDN connection: 
+    | Field             | Description                                                                            |
+    |-------------------+----------------------------------------------------------------------------------------|
+    | APN in Use        | The APN currently used. This APN shall be composed of the APN Network Identifier       |
+    | APN-AMBR          | The maximum aggregated uplink and downlink MBR to be shared across all NonGBR bearers. |
+    | Assigned PDN Type | The PDN Type assigned by the network (IPv4, IPv6, or IPv4v6).                          |
+    | IP Address(es)    | IPv4 address and/or IPv6 prefix                                                        |
+    | Default Bearer    | Identifies the default bearer within the PDN connection by its EPS Bearer Id.          |
+**** For each EPS Bearer within the PDN connection 
+    | Field          | Description                                                                                |
+    |----------------+--------------------------------------------------------------------------------------------|
+    | EPS Bearer ID  | An EPS bearer identity uniquely identifies an EPS bearer for one UE accessing via E-UTRAN. |
+    | TI             | Transaction Identifier                                                                     |
+    | EPS bearer QoS | GBR and MBR for GBR bearer.                                                                |
+    | TFT            | Traffic Flow Template.                                                                     |
 
 * org-config                                                        :ARCHIVE:
 #+STARTUP: content hidestars logdone
