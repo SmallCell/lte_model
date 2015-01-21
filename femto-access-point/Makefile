@@ -2,7 +2,7 @@ default: all
 
 .PHONY: test
 
-REPORT = perl ../scripts/report.pl --include=../base/cwmp --loglevel=error --nowarnbibref
+REPORT = perl -I../scripts/plugins ../scripts/report.pl --include=../base/cwmp --loglevel=error --nowarnbibref
 
 BASELINE = ../base/cwmp/tr-181-2-4.xml  ../base/cwmp/tr-098-1-6.xml  ../base/cwmp/tr-196-2-0.xml
 

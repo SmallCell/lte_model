@@ -2,7 +2,7 @@ default: all
 
 .PHONY: test
 
-REPORT = perl -I../scripts/plugins/erl ../scripts/report.pl --include=../base/cwmp --loglevel=error --nowarnbibref
+REPORT = perl -I../scripts/plugins ../scripts/report.pl --include=../base/cwmp --loglevel=error --nowarnbibref
 BASELINE = ../base/cwmp/tr-181-2-4.xml  ../base/cwmp/tr-098-1-6.xml  ../base/cwmp/tr-196-2-0.xml
 
 TARGETS = x-small-cell-mme-1.0-dt.xml 	\
@@ -13,13 +13,15 @@ TARGETS = x-small-cell-mme-1.0-dt.xml 	\
 	x-small-cell-ue-1-0-dt.xml
 
 TARGETS-DOC = $(patsubst %.xml,%.html,$(TARGETS))
+TARGETS-HRL = $(patsubst %.xml,%.hrl,$(TARGETS))
 
-all: $(TARGETS) 
+all: $(TARGETS) x-small-cell-ue-1-0-dt.hrl
 
-doc: $(TARGETS-DOC)
+doc: $(TARGETS-DOC) 
 
-gen-hrl: 
-	$(REPORT) --plugin=hrl --report=hrl x-small-cell-ue-1-0.xml
+gen-hrl: $(TARGETS-HRL)
+	cp $(TARGETS-HRL) ../include
+	# $(REPORT) --plugin=hrl --report=hrl x-small-cell-ue-1-0.xml
 
 test:
 	@echo "Do nothing usefull"
@@ -31,6 +33,8 @@ test:
 	$(REPORT) -report=text x-small-cell-ue-1.0.xml
 
 clean:
-	$(RM) $(TARGETS) $(TARGETS-DOC)
+	$(RM) $(TARGETS) $(TARGETS-DOC) $(TARGETS-HRL)
+
+REPORTSPECS_EXTRA = xml:.hrl:--plugin=hrl_--report=hrl
 
 include ../report.mk

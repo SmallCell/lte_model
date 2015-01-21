@@ -11,10 +11,13 @@ doc: femto-access-point/doc lte-packet-core/doc
 
 clean: femto-access-point/clean lte-packet-core/clean
 
+gen-hrl: lte-packet-core/gen-hrl
+
 # Subdir rules
 %/all:; $(MAKE) -C $* all
 %/doc:; $(MAKE) -C $* doc
 %/test:; $(MAKE) -C $* test
+%/gen-hrl:; $(MAKE) -C $* gen-hrl
 %/clean:; $(MAKE) -C $* clean
 
 # BBF scripts update

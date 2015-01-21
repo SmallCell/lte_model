@@ -39,7 +39,6 @@ sub object_checks {
 
     my @nodes = @{$node->{nodes}}; 
     my $last = $nodes[-1];
-    # print ">> $last";
     foreach my $child (@nodes) {        
         print "  ";
         parameter_checks($child);
@@ -106,8 +105,8 @@ sub hrl_node
     model_checks($name, $node) if $model;
     object_checks($name, $node) if $object;
 
-    my $values = $node->{values};
-    my $syntax = $node->{syntax};
+    # my $values = $node->{values};
+    # my $syntax = $node->{syntax};
 
 
     # print "n $node->{name}\n";
