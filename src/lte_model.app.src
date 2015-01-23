@@ -1,0 +1,12 @@
+{application, lte_model,
+ [
+  {description, ""},
+  {vsn, "1"},
+  {registered, []},
+  {applications, [
+                  kernel,
+                  stdlib
+                 ]},
+  {mod, { lte_model_app, []}},
+  {env, []}
+ ]}.
