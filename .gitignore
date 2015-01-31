@@ -1,2 +1,4 @@
 base
 *.html
+ebin/
+-dt.xml
