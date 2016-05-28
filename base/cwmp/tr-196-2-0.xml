@@ -1,49 +1,25 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <!--
-  FAPService:2.0 Femto Access Point Service Data Model (Corrigendum 1)
+  FAPService:2.0 Femto Access Point Service Data Model (Corrigendum 2)
 
   Notice:
-
     The Broadband Forum is a non-profit corporation organized to create
     guidelines for broadband network system development and deployment.
     This Broadband Forum Document has been approved by members of the
     Forum. This Broadband Forum Document is not binding on the Broadband
     Forum, any of its members, or any developer or service provider.
     This Broadband Forum Document is subject to change, but only with
-    approval of members of the Forum.  This Document is copyrighted by
-    the Broadband Forum, and all rights are reserved.  Portions of this
+    approval of members of the Forum. This Document is copyrighted by
+    the Broadband Forum, and all rights are reserved. Portions of this
     Document may be copyrighted by Broadband Forum members.
 
-    This Broadband Forum Document is provided AS IS, WITH ALL FAULTS.
-    ANY PERSON HOLDING A COPYRIGHT IN THIS BROADBAND FORUM DOCUMENT,
-    OR ANY PORTION THEREOF, DISCLAIMS TO THE FULLEST EXTENT PERMITTED
-    BY LAW ANY REPRESENTATION OR WARRANTY, EXPRESS OR IMPLIED,
-    INCLUDING, BUT NOT LIMITED TO, ANY WARRANTY: 
-
-    (a) OF ACCURACY, COMPLETENESS, MERCHANTABILITY, FITNESS FOR A
-        PARTICULAR PURPOSE, NON-INFRINGEMENT, OR TITLE;
-    (b) THAT THE CONTENTS OF THIS BROADBAND FORUM DOCUMENT ARE SUITABLE
-        FOR ANY PURPOSE, EVEN IF THAT PURPOSE IS KNOWN TO THE COPYRIGHT
-        HOLDER;
-    (c) THAT THE IMPLEMENTATION OF THE CONTENTS OF THE DOCUMENT WILL NOT
-        INFRINGE ANY THIRD PARTY PATENTS, COPYRIGHTS, TRADEMARKS OR
-        OTHER RIGHTS.
-
-    By using this Broadband Forum Document, users acknowledge that
-    implementation may require licenses to patents.  The Broadband Forum
-    encourages but does not require its members to identify such
-    patents.  For a list of declarations made by Broadband Forum member
-    companies, please see http://www.broadband-forum.org.  No assurance
-    is given that licenses to patents necessary to implement this
-    Document will be available for license at all or on reasonable and
-    non-discriminatory terms.
-
-    ANY PERSON HOLDING A COPYRIGHT IN THIS BROADBAND FORUM DOCUMENT, OR
-    ANY PORTION THEREOF, DISCLAIMS TO THE FULLEST EXTENT PERMITTED BY
-    LAW (A) ANY LIABILITY (INCLUDING DIRECT, INDIRECT, SPECIAL, OR
-    CONSEQUENTIAL DAMAGES UNDER ANY LEGAL THEORY) ARISING FROM OR
-    RELATED TO THE USE OF OR RELIANCE UPON THIS DOCUMENT; AND (B) ANY
-    OBLIGATION TO UPDATE OR CORRECT THIS DOCUMENT.
+    THIS SPECIFICATION IS BEING OFFERED WITHOUT ANY WARRANTY WHATSOEVER,
+    AND IN PARTICULAR, ANY WARRANTY OF NONINFRINGEMENT IS EXPRESSLY
+    DISCLAIMED. ANY USE OF THIS SPECIFICATION SHALL BE MADE ENTIRELY AT
+    THE IMPLEMENTER'S OWN RISK, AND NEITHER the Forum, NOR ANY OF ITS
+    MEMBERS OR SUBMITTERS, SHALL HAVE ANY LIABILITY WHATSOEVER TO ANY
+    IMPLEMENTER OR THIRD PARTY FOR ANY DAMAGES OF ANY NATURE WHATSOEVER,
+    DIRECTLY OR INDIRECTLY, ARISING FROM THE USE OF THIS SPECIFICATION.
 
     Broadband Forum Documents may be copied, downloaded, stored on a
     server or otherwise re-distributed in their entirety only, and may
@@ -53,22 +29,23 @@
     The text of this notice must be included in all copies of this
     Broadband Forum Document.
 
-
   Summary:
     TR-196 FAPServce:2 Service data model with radio specific parts
         for UMTS, LTE and CDMA2000 Femto cells.
 
   Editors:
-    Klaus Wich, Nokia Siemens Networks
-    Douglas Knisely, Qualcomm Incorporated
+    Klaus Wich, Nokia Siemens Networks (Original)
+    Douglas Knisely, Qualcomm Incorporated (Corrigendum 1)
+    William Lupton, Broadband Forum (Corrigendum 2)
 
   BroadbandHome™ Working Group Chairs:
-    Greg Bathrick, PMC-Sierra
-    Jason Walls, UNH
+    Jason Walls, QA Cafe
+    John Blackford, Pace
 
-  Version History:
-    * November 2011: Rev-00: tr-196-2-0-0.xml, corresponds to TR-196 Issue 2.
-    * November 2012: Rev-01: tr-196-2-0-1.xml, corresponds to TR-196 Issue 2 Corrigendum 1.
+  Issue History (Filename: Approval Date: Publication Date: Changes):
+    * tr-196-2-0-0.xml: November 2011: corresponds to TR-196 Issue 2.
+    * tr-196-2-0-1.xml: November 2012: corresponds to TR-196 Issue 2 Corrigendum 1.
+    * tr-196-2-0-2.xml: 23 February 2015: 16 March 2015: corresponds to TR-196 Issue 2 Corrigendum 2.
 -->
 <dm:document xmlns:dm="urn:broadband-forum-org:cwmp:datamodel-1-4"
     xmlns:dmr="urn:broadband-forum-org:cwmp:datamodel-report-0-1"
@@ -77,13 +54,18 @@
                            http://www.broadband-forum.org/cwmp/cwmp-datamodel-1-4.xsd
                         urn:broadband-forum-org:cwmp:datamodel-report-0-1
                            http://www.broadband-forum.org/cwmp/cwmp-datamodel-report.xsd"
-    spec="urn:broadband-forum-org:tr-196-2-0-1" file="tr-196-2-0-1.xml">
+    spec="urn:broadband-forum-org:tr-196-2-0-2" file="tr-196-2-0-2.xml">
 
     <description>
+      {{docname|Femto Access Point Service Data Model}}
+      {{appdate|February 2015}}
+      {{trname|TR-196i2}}
       November 2011:  {{xmlref|tr-196-2-0-0|Original}}
       November 2012:  {{xmlref|tr-196-2-0-1|Corrigendum 1}}
       * Corrected errors in TR-196i2 per direction of 3GPP TS 32.592.
       * Corrected range of FAPService.{i}.REM.UMTS.GSM.Cell.{i}.CI
+      February 2015:  {{xmlref|tr-196-2-0-2|Corrigendum 2}}
+      * Corrected errors in QHyst1s and QHyst2s parameter descriptions
     </description>
     <import file="tr-106-1-0-types.xml" spec="urn:broadband-forum-org:tr-106-1-0">
         <dataType name="IPAddress" />
@@ -2541,7 +2523,6 @@ Note: This parameter controls the setting of the CSGindicator bit, specified in 
                 <description>
                     GSM and FDD Cell reselection hysteresis 1. {{bibref|3GPP-TS.25.331|Section 10.3.2.3}}
                     Only even values are valid, use of an odd value MUST be rejected by the CPE.
-                    This value is only meaningful if {{param|QualityMeasureCPICH}} has the value {{enum|RSCP|QualityMeasureCPICH}} and it MUST otherwise be ignored.
                 </description>
                 <syntax>
                     <unsignedInt>
@@ -2553,7 +2534,7 @@ Note: This parameter controls the setting of the CSGindicator bit, specified in 
                 <description>
                     FDD Cell reselection hysteresis 2. {{bibref|3GPP-TS.25.331|Section 10.3.2.3}}
                     Only even values are valid, use of an odd value MUST be rejected by the CPE.
-                    This value is only meaningful if {{param|QualityMeasureCPICH}} has the value {{enum|RSCP|QualityMeasureCPICH}} and it MUST otherwise be ignored.
+                    This value is only meaningful if {{param|QualityMeasureCPICH}} has the value {{enum|Ec/No|QualityMeasureCPICH}} and it MUST otherwise be ignored.
                     By default when {{param|QHyst1s}} is set and {{param}} is not, then the value for {{param}} SHOULD match the value of {{param|QHyst1s}}.
                 </description>
                 <syntax>

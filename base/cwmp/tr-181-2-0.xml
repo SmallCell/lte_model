@@ -3,70 +3,71 @@
   TR-069 Device:2.0 Root Object definition
 
   Notice:
+    The Broadband Forum is a non-profit corporation organized to create
+    guidelines for broadband network system development and deployment.
+    This Broadband Forum Document has been approved by members of the
+    Forum. This Broadband Forum Document is not binding on the Broadband
+    Forum, any of its members, or any developer or service provider.
+    This Broadband Forum Document is subject to change, but only with
+    approval of members of the Forum.  This Document is copyrighted by
+    the Broadband Forum, and all rights are reserved.  Portions of this
+    Document may be copyrighted by Broadband Forum members.
 
-  The Broadband Forum is a non-profit corporation organized to create
-  guidelines for broadband network system development and deployment.
-  This Broadband Forum Document has been approved by members of the
-  Forum. This Broadband Forum Document is not binding on the Broadband
-  Forum, any of its members, or any developer or service provider.
-  This Broadband Forum Document is subject to change, but only with
-  approval of members of the Forum.  This Document is copyrighted by
-  the Broadband Forum, and all rights are reserved.  Portions of this
-  Document may be copyrighted by Broadband Forum members.
+    This Broadband Forum Document is provided AS IS, WITH ALL FAULTS.
+    ANY PERSON HOLDING A COPYRIGHT IN THIS BROADBAND FORUM DOCUMENT,
+    OR ANY PORTION THEREOF, DISCLAIMS TO THE FULLEST EXTENT PERMITTED
+    BY LAW ANY REPRESENTATION OR WARRANTY, EXPRESS OR IMPLIED,
+    INCLUDING, BUT NOT LIMITED TO, ANY WARRANTY: 
 
-  This Broadband Forum Document is provided AS IS, WITH ALL FAULTS.
-  ANY PERSON HOLDING A COPYRIGHT IN THIS BROADBAND FORUM DOCUMENT,
-  OR ANY PORTION THEREOF, DISCLAIMS TO THE FULLEST EXTENT PERMITTED
-  BY LAW ANY REPRESENTATION OR WARRANTY, EXPRESS OR IMPLIED,
-  INCLUDING, BUT NOT LIMITED TO, ANY WARRANTY: 
+    (a) OF ACCURACY, COMPLETENESS, MERCHANTABILITY, FITNESS FOR A
+        PARTICULAR PURPOSE, NON-INFRINGEMENT, OR TITLE;
+    (b) THAT THE CONTENTS OF THIS BROADBAND FORUM DOCUMENT ARE SUITABLE
+        FOR ANY PURPOSE, EVEN IF THAT PURPOSE IS KNOWN TO THE COPYRIGHT
+        HOLDER;
+    (c) THAT THE IMPLEMENTATION OF THE CONTENTS OF THE DOCUMENT WILL NOT
+        INFRINGE ANY THIRD PARTY PATENTS, COPYRIGHTS, TRADEMARKS OR
+        OTHER RIGHTS.
 
-  (a) OF ACCURACY, COMPLETENESS, MERCHANTABILITY, FITNESS FOR A
-      PARTICULAR PURPOSE, NON-INFRINGEMENT, OR TITLE;
-  (b) THAT THE CONTENTS OF THIS BROADBAND FORUM DOCUMENT ARE SUITABLE
-      FOR ANY PURPOSE, EVEN IF THAT PURPOSE IS KNOWN TO THE COPYRIGHT
-      HOLDER;
-  (c) THAT THE IMPLEMENTATION OF THE CONTENTS OF THE DOCUMENT WILL NOT
-      INFRINGE ANY THIRD PARTY PATENTS, COPYRIGHTS, TRADEMARKS OR
-      OTHER RIGHTS.
+    By using this Broadband Forum Document, users acknowledge that
+    implementation may require licenses to patents.  The Broadband Forum
+    encourages but does not require its members to identify such
+    patents.  For a list of declarations made by Broadband Forum member
+    companies, please see http://www.broadband-forum.org.  No assurance
+    is given that licenses to patents necessary to implement this
+    Document will be available for license at all or on reasonable and
+    non-discriminatory terms.
 
-  By using this Broadband Forum Document, users acknowledge that
-  implementation may require licenses to patents.  The Broadband Forum
-  encourages but does not require its members to identify such
-  patents.  For a list of declarations made by Broadband Forum member
-  companies, please see http://www.broadband-forum.org.  No assurance
-  is given that licenses to patents necessary to implement this
-  Document will be available for license at all or on reasonable and
-  non-discriminatory terms.
+    ANY PERSON HOLDING A COPYRIGHT IN THIS BROADBAND FORUM DOCUMENT, OR
+    ANY PORTION THEREOF, DISCLAIMS TO THE FULLEST EXTENT PERMITTED BY
+    LAW (A) ANY LIABILITY (INCLUDING DIRECT, INDIRECT, SPECIAL, OR
+    CONSEQUENTIAL DAMAGES UNDER ANY LEGAL THEORY) ARISING FROM OR
+    RELATED TO THE USE OF OR RELIANCE UPON THIS DOCUMENT; AND (B) ANY
+    OBLIGATION TO UPDATE OR CORRECT THIS DOCUMENT.
 
-  ANY PERSON HOLDING A COPYRIGHT IN THIS BROADBAND FORUM DOCUMENT, OR
-  ANY PORTION THEREOF, DISCLAIMS TO THE FULLEST EXTENT PERMITTED BY
-  LAW (A) ANY LIABILITY (INCLUDING DIRECT, INDIRECT, SPECIAL, OR
-  CONSEQUENTIAL DAMAGES UNDER ANY LEGAL THEORY) ARISING FROM OR
-  RELATED TO THE USE OF OR RELIANCE UPON THIS DOCUMENT; AND (B) ANY
-  OBLIGATION TO UPDATE OR CORRECT THIS DOCUMENT.
+    Broadband Forum Documents may be copied, downloaded, stored on a
+    server or otherwise re-distributed in their entirety only, and may
+    not be modified without the advance written permission of the
+    Broadband Forum.
 
-  Broadband Forum Documents may be copied, downloaded, stored on a
-  server or otherwise re-distributed in their entirety only, and may
-  not be modified without the advance written permission of the
-  Broadband Forum.
-
-  The text of this notice must be included in all copies of this
-  Broadband Forum Document.
+    The text of this notice must be included in all copies of this
+    Broadband Forum Document.
   
   Summary:
-  TR-069 Device:2.0 Root Object definition.
+    TR-069 Device:2.0 Root Object definition.
 
   Version History:
-  * May 2010: tr-181-2-0-0.xml, corresponds to TR-181 Issue 2.
+    * May 2010: tr-181-2-0-0.xml, corresponds to TR-181 Issue 2.
+    * November 2010: tr-181-2-0-1.xml, corresponds to TR-181 
+        Issue 2 Corigendum 1.
 -->
 
 <dm:document xmlns:dm="urn:broadband-forum-org:cwmp:datamodel-1-2"
-	xmlns:dmr="urn:broadband-forum-org:cwmp:datamodel-report-0-1"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="urn:broadband-forum-org:cwmp:datamodel-1-2 cwmp-datamodel-1-2.xsd 
-                          urn:broadband-forum-org:cwmp:datamodel-report-0-1 cwmp-datamodel-report.xsd"
-	spec="urn:broadband-forum-org:tr-181-2-0-0">
-  <description>Device:2 data model.</description>
+    xmlns:dmr="urn:broadband-forum-org:cwmp:datamodel-report-0-1"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="urn:broadband-forum-org:cwmp:datamodel-1-2 cwmp-datamodel-1-2.xsd 
+                        urn:broadband-forum-org:cwmp:datamodel-report-0-1 cwmp-datamodel-report.xsd"
+    spec="urn:broadband-forum-org:tr-181-2-0-1">
+  <description>Device:2.0 data model.</description>
 
   <import file="tr-069-biblio.xml" spec="urn:broadband-forum-org:tr-069-biblio"/>
 
@@ -618,11 +619,11 @@ Note that on a factory reset of the CPE, the value of this parameter might be re
         </syntax>
       </parameter>
       <parameter name="PeriodicInformTime" access="readWrite">
-        <description>An absolute time reference in UTC to determine when the CPE will initiate the periodic Inform method calls.   Each Inform call MUST occur at this reference time plus or minus an integer multiple of the {{param|PeriodicInformInterval}}.
+        <description>An absolute time reference in UTC to determine when the CPE will initiate the periodic Inform method calls. Each Inform call MUST occur at this reference time plus or minus an integer multiple of the {{param|PeriodicInformInterval}}.
 {{param}} is used only to set the ''phase'' of the periodic Informs.  The actual value of {{param}} can be arbitrarily far into the  past or future.
 For example, if {{param|PeriodicInformInterval}} is 86400 (a day) and if {{param}} is set to UTC midnight on some day (in the past,  present, or future) then periodic Informs will occur every day at UTC midnight.  These MUST begin on the very next midnight, even if  {{param}} refers to a day in the future.
 The Unknown Time value defined in {{bibref|TR-106a2|section 3.2}} indicates that no particular time reference is specified.  That is,  the CPE MAY locally choose the time reference, and needs only to adhere to the specified {{param|PeriodicInformInterval}}.
-If absolute time is not available to the CPE, its periodic Inform behavior MUST be the same as if the {{param}} parameter was set to  the Unknown Time value.</description>
+If absolute time is not available to the CPE, its periodic Inform behavior MUST be the same as if the {{param}} parameter was set to the Unknown Time value.</description>
         <syntax>
           <dateTime/>
         </syntax>
@@ -6546,7 +6547,7 @@ This parameter is based on ''mocaIfTabooChannelMask'' from {{bibref|MOCA11-MIB}}
             <size minLength="8" maxLength="8"/>
           </hexBinary>
         </syntax>
-      </parameter>	
+      </parameter>
       <parameter name="NodeTabooMask" access="readOnly">
         <description>Hexadecimal encoded 64-bit mask of supported frequencies. This is the bit map of the spectrum that the interface supports, and each bit represents 25 MHz of spectrum. The least significant bit of the rightmost character corresponds to 800MHz, which is the lowest frequency.
 This parameter is based on ''mocaIfNodeTabooChannelMask'' from {{bibref|MOCA11-MIB}}.</description>
@@ -6722,7 +6723,7 @@ This parameter is based on ''mocaIfEgressNodeNumFlows'' from {{bibref|MOCA11-MIB
         <description>The number of QoS flows that this interface has onto the MoCA network.
 This parameter is based on ''mocaIfIngressNodeNumFlows'' from {{bibref|MOCA11-MIB}}.</description>
         <syntax>
-          <unsignedInt/>	
+          <unsignedInt/>
         </syntax>
       </parameter>
       <parameter name="FlowStatsNumberOfEntries" access="readOnly">
@@ -8068,7 +8069,6 @@ Note: Valid {{param}} values depend on the {{param|OperatingFrequencyBand}} and 
         <description>Indicates whether automatic channel selection is supported by this radio. If {{false}}, then {{param|AutoChannelEnable}} MUST be {{false}}.</description>
         <syntax>
           <boolean/>
-          <default type="object" value="false"/>
         </syntax>
       </parameter>
       <parameter name="AutoChannelEnable" access="readWrite">
@@ -9995,15 +9995,16 @@ Reset on a disabled interface is a no-op (not an error).</description>
         <description>The maximum allowed size of frames sent from the remote peer.</description>
         <syntax>
           <unsignedInt>
-            <range minInclusive="1" maxInclusive="1540"/>
+            <range minInclusive="64" maxInclusive="65535"/>
           </unsignedInt>
+          <default type="object" value="1500"/>
         </syntax>
       </parameter>
       <parameter name="CurrentMRUSize" access="readOnly" activeNotify="canDeny">
         <description>The current MRU in use over this connection.</description>
         <syntax>
           <unsignedInt>
-            <range minInclusive="1" maxInclusive="1540"/>
+            <range minInclusive="64" maxInclusive="65535"/>
           </unsignedInt>
         </syntax>
       </parameter>
@@ -10040,7 +10041,7 @@ Note that the reason for a PPP connection becoming disconnected to begin with mi
       </parameter>
     </object>
 
-    <object name="Device.PPP.Interface.{i}.PPPoE." access="readOnly" minEntries="1" maxEntries="1">
+    <object name="Device.PPP.Interface.{i}.PPPoE." access="readOnly" minEntries="0" maxEntries="1">
       <description>PPPoE object that functionally groups PPPoE related parameters.</description>
       <parameter name="SessionID" access="readOnly">
         <description>Represents the PPPoE Session ID.</description>
@@ -10335,10 +10336,10 @@ Reset on a disabled interface is a no-op (not an error).</description>
         </syntax>
       </parameter>
       <parameter name="MaxMTUSize" access="readWrite">
-        <description>The maximum allowed size of an Ethernet frame from a device.</description>
+        <description>The maximum transmission unit (MTU); the largest allowed size of an IP packet (including IP headers, but excluding lower layer headers such as Ethernet, PPP, or PPPoE headers) that is allowed to be transmitted by or through this device.</description>
         <syntax>
           <unsignedInt>
-            <range minInclusive="1" maxInclusive="1540"/>
+            <range minInclusive="64" maxInclusive="65535"/>
           </unsignedInt>
         </syntax>
       </parameter>
@@ -10736,7 +10737,7 @@ Example: Device.IP.Interface.1</description>
         </syntax>
       </parameter>
       <parameter name="Host" access="readWrite">
-        <description>Host name or address of the host to find a route to</description>
+        <description>Host name or address of the host to find a route to.</description>
         <syntax>
           <string>
             <size maxLength="256"/>
@@ -10941,7 +10942,7 @@ The {{enum|Error}} value MAY be used by the CPE to indicate a locally defined er
 
     <object name="Device.Routing.Router.{i}.IPv4Forwarding.{i}." access="readWrite"  numEntriesParameter="IPv4ForwardingNumberOfEntries" enableParameter="Enable" minEntries="0" maxEntries="unbounded">
       <description>Layer 3 IPv4 forwarding table.
-In addition to statically configured routes, this table MUST include dynamic routes learned through layer 3 routing protocols,  including RIP, DHCP, and IPCP.  The CPE MAY reject attempts to delete or modify a dynamic route entry.
+In addition to statically configured routes, this table MUST include dynamic routes learned through layer 3 routing protocols, including RIP, DHCP, and IPCP. The CPE MAY reject attempts to delete or modify a dynamic route entry.
 For each incoming packet, the layer 3 forwarding decision is conceptually made as follows:
 * Only table entries with a matching {{param|ForwardingPolicy}} are considered, i.e. those that either do not specify a  {{param|ForwardingPolicy}}, or else specify a {{param|ForwardingPolicy}} that matches that of the incoming packet. 
 * For the remaining table entries, those for which the source address/mask matches are sorted by longest prefix, i.e. with the most  specific networks first (an unspecified source address is a wild-card and always matches, with a prefix length of zero). 
@@ -11253,7 +11254,6 @@ When set to {{false}}, no RIP route advertisements will be sent over {{param|Int
             <size maxLength="256"/>
             <pathRef refType="strong" targetParent="Policer." targetType="row"/>
           </string>
-          <default type="object" value=""/>
         </syntax>
       </parameter>
       <parameter name="DefaultQueue" access="readWrite">
@@ -11263,7 +11263,6 @@ When set to {{false}}, no RIP route advertisements will be sent over {{param|Int
             <size maxLength="256"/>
             <pathRef refType="strong" targetParent="Queue." targetType="row"/>
           </string>
-          <default type="object" value=""/>
         </syntax>
       </parameter>
       <parameter name="DefaultDSCPMark" access="readWrite">
@@ -12876,7 +12875,7 @@ If the CPE has a user interface with password protection enabled, this parameter
         </syntax>
       </parameter>
       <parameter name="AddressSource" access="readOnly">
-        <description>Indicates whether the IP address of the host was allocated by the CPE using DHCP, was assigned to the host  statically, or was assigned using automatic IP address allocation.</description>
+        <description>Indicates whether the IP address of the host was allocated by the CPE using DHCP, was assigned to the host statically, or was assigned using automatic IP address allocation.</description>
         <syntax>
           <string>
             <enumeration value="DHCP"/>
@@ -12972,7 +12971,6 @@ The ability to list inactive hosts is OPTIONAL.  If the CPE includes inactive ho
         <description>Enables or disables the DNS client.</description>
         <syntax>
           <boolean/>
-          <default type="object" value="false"/>
         </syntax>
       </parameter>
       <parameter name="Status" access="readOnly">
@@ -12984,7 +12982,6 @@ The {{enum|Error}} value MAY be used by the CPE to indicate a locally defined er
             <enumeration value="Enabled"/>
             <enumeration value="Error" optional="true"/>
           </string>
-          <default type="object" value="Disabled"/>
         </syntax>
       </parameter>
       <parameter name="ServerNumberOfEntries" access="readOnly">
@@ -13069,7 +13066,6 @@ Table entries that are automatically created as result of DHCP or IPCP received 
         <description>Enables or disables the DNS Relay function.</description>
         <syntax>
           <boolean/>
-          <default type="object" value="false"/>
         </syntax>
       </parameter>
       <parameter name="Status" access="readOnly">
@@ -13081,7 +13077,6 @@ The {{enum|Error}} value MAY be used by the CPE to indicate a locally defined er
             <enumeration value="Enabled"/>
             <enumeration value="Error" optional="true"/>
           </string>
-          <default type="object" value="Disabled"/>
         </syntax>
       </parameter>
       <parameter name="ForwardNumberOfEntries" access="readOnly">
@@ -13656,7 +13651,6 @@ Received DHCP option values MAY, but need not, persist across CPE reboots.</desc
         <description>Enables or disables the DHCP server.</description>
         <syntax>
           <boolean/>
-          <default type="object" value="false"/>
         </syntax>
       </parameter>
       <parameter name="PoolNumberOfEntries" access="readOnly">
@@ -13984,7 +13978,7 @@ Disabling an entry does not return the IP address to the pool.</description>
     </object>
 
     <object name="Device.DHCPv4.Relay." access="readOnly" minEntries="1" maxEntries="1">
-      <description>DHCP Relay Agent (conditional serving and conditional relaying).</description>
+      <description>DHCP Relay Agent (conditional relaying).</description>
       <parameter name="Enable" access="readWrite">
         <description>Enables or disables the DHCP Relay Agent function.</description>
         <syntax>
@@ -14000,7 +13994,6 @@ The {{enum|Error}} value MAY be used by the CPE to indicate a locally defined er
             <enumeration value="Enabled"/>
             <enumeration value="Error" optional="true"/>
           </string>
-          <default type="object" value="Disabled"/>
         </syntax>
       </parameter>
       <parameter name="ForwardingNumberOfEntries" access="readOnly">
@@ -14541,7 +14534,6 @@ The device MUST initiate the disconnect after completion of the current CWMP ses
       <object ref="Device.DNS.Client.Server.{i}." requirement="createDelete">
         <parameter ref="Enable" requirement="readWrite"/>
         <parameter ref="Status" requirement="readOnly"/>
-        <parameter ref="Alias" requirement="readWrite"/>
         <parameter ref="DNSServer" requirement="readWrite"/>
         <parameter ref="Interface" requirement="readWrite"/>
         <parameter ref="Type" requirement="readOnly"/>
@@ -14558,7 +14550,6 @@ The device MUST initiate the disconnect after completion of the current CWMP ses
       <object ref="Device.DNS.Relay.Forwarding.{i}." requirement="createDelete">
         <parameter ref="Enable" requirement="readWrite"/>
         <parameter ref="Status" requirement="readOnly"/>
-        <parameter ref="Alias" requirement="readWrite"/>
         <parameter ref="DNSServer" requirement="readWrite"/>
         <parameter ref="Interface" requirement="readWrite"/>
         <parameter ref="Type" requirement="readOnly"/>
@@ -14577,7 +14568,6 @@ The device MUST initiate the disconnect after completion of the current CWMP ses
       <object ref="Device.Routing.RIP.InterfaceSetting.{i}." requirement="createDelete">
         <parameter ref="Enable" requirement="readWrite"/>
         <parameter ref="Status" requirement="readOnly"/>
-        <parameter ref="Alias" requirement="readWrite"/>
         <parameter ref="Interface" requirement="readWrite"/>
         <parameter ref="Version" requirement="readWrite"/>
         <parameter ref="AcceptRA" requirement="readWrite"/>
@@ -14586,13 +14576,11 @@ The device MUST initiate the disconnect after completion of the current CWMP ses
       <object ref="Device.Routing.Router.{i}." requirement="createDelete">
         <parameter ref="Enable" requirement="readWrite"/>
         <parameter ref="Status" requirement="readOnly"/>
-        <parameter ref="Alias" requirement="readWrite"/>
         <parameter ref="IPv4ForwardingNumberOfEntries" requirement="readOnly"/>
       </object>
       <object ref="Device.Routing.Router.{i}.IPv4Forwarding.{i}." requirement="createDelete">
         <parameter ref="Enable" requirement="readWrite"/>
         <parameter ref="Status" requirement="readOnly"/>
-        <parameter ref="Alias" requirement="readWrite"/>
         <parameter ref="DestIPAddress" requirement="readWrite"/>
         <parameter ref="DestSubnetMask" requirement="readWrite"/>
         <parameter ref="GatewayIPAddress" requirement="readWrite"/>
@@ -14619,7 +14607,6 @@ The device MUST initiate the disconnect after completion of the current CWMP ses
       </object>
       <object ref="Device.IP.Interface.{i}.IPv4Address.{i}." requirement="createDelete">
         <parameter ref="Enable" requirement="readWrite"/>
-        <parameter ref="Alias" requirement="readWrite"/>
         <parameter ref="IPAddress" requirement="readWrite"/>
         <parameter ref="SubnetMask" requirement="readWrite"/>
         <parameter ref="AddressingType" requirement="readOnly"/>
@@ -14756,7 +14743,6 @@ The device MUST initiate the disconnect after completion of the current CWMP ses
       <object ref="Device.Bridging.Bridge.{i}." requirement="present">
         <parameter ref="Enable" requirement="readWrite"/>
         <parameter ref="Status" requirement="readOnly"/>
-        <parameter ref="Alias" requirement="readWrite"/>
         <parameter ref="PortNumberOfEntries" requirement="readOnly"/>
       </object>
       <object ref="Device.Bridging.Bridge.{i}.Port.{i}." requirement="createDelete">
@@ -14799,7 +14785,6 @@ The device MUST initiate the disconnect after completion of the current CWMP ses
       <object ref="Device.Bridging.Bridge.{i}." requirement="createDelete">
         <parameter ref="Enable" requirement="readWrite"/>
         <parameter ref="Status" requirement="readOnly"/>
-        <parameter ref="Alias" requirement="readWrite"/>
         <parameter ref="Standard" requirement="readWrite"/>
         <parameter ref="PortNumberOfEntries" requirement="readOnly"/>
         <parameter ref="VLANNumberOfEntries" requirement="readOnly"/>
@@ -14840,13 +14825,11 @@ The device MUST initiate the disconnect after completion of the current CWMP ses
       </object>
       <object ref="Device.Bridging.Bridge.{i}.VLAN.{i}." requirement="createDelete">
         <parameter ref="Enable" requirement="readWrite"/>
-        <parameter ref="Alias" requirement="readWrite"/>
         <parameter ref="Name" requirement="readWrite"/>
         <parameter ref="VLANID" requirement="readWrite"/>
       </object>
       <object ref="Device.Bridging.Bridge.{i}.VLANPort.{i}." requirement="createDelete">
         <parameter ref="Enable" requirement="readWrite"/>
-        <parameter ref="Alias" requirement="readWrite"/>
         <parameter ref="VLAN" requirement="readWrite"/>
         <parameter ref="Port" requirement="readWrite"/>
         <parameter ref="Untagged" requirement="readWrite"/>
@@ -14860,7 +14843,6 @@ The device MUST initiate the disconnect after completion of the current CWMP ses
       </object>
       <object ref="Device.Bridging.Filter.{i}." requirement="createDelete">
         <parameter ref="Enable" requirement="readWrite"/>
-        <parameter ref="Alias" requirement="readWrite"/>
         <parameter ref="Status" requirement="readOnly"/>
         <parameter ref="Bridge" requirement="readWrite"/>
         <parameter ref="Order" requirement="readWrite"/>
@@ -15250,7 +15232,6 @@ The device MUST initiate the disconnect after completion of the current CWMP ses
         <parameter ref="BondedChannelNumberOfEntries" requirement="readOnly"/>
       </object>
       <object ref="Device.DSL.BondingGroup.{i}.BondedChannel.{i}." requirement="present">
-        <parameter ref="Alias" requirement="readOnly"/>
         <parameter ref="Channel" requirement="readOnly"/>
       </object>
       <object ref="Device.DSL.BondingGroup.{i}.BondedChannel.{i}.Ethernet." requirement="present"/>
@@ -15569,7 +15550,6 @@ The device MUST initiate the disconnect after completion of the current CWMP ses
       </object>
       <object ref="Device.UPA.Interface.{i}.ActiveNotch.{i}." requirement="createDelete">
         <parameter ref="Enable" requirement="readWrite"/>
-        <parameter ref="Alias" requirement="readWrite"/>
         <parameter ref="StartFreq" requirement="readWrite"/>
         <parameter ref="StopFreq" requirement="readWrite"/>
         <parameter ref="Depth" requirement="readWrite"/>
@@ -15668,7 +15648,6 @@ The device MUST initiate the disconnect after completion of the current CWMP ses
       <object ref="Device.WiFi.AccessPoint.{i}." requirement="createDelete">
         <parameter ref="Enable" requirement="readWrite"/>
         <parameter ref="Status" requirement="readOnly"/>
-        <parameter ref="Alias" requirement="readWrite"/>
         <parameter ref="SSIDReference" requirement="readWrite"/>
         <parameter ref="SSIDAdvertisementEnabled" requirement="readWrite"/>
         <parameter ref="WMMCapability" requirement="readOnly"/>
@@ -15708,7 +15687,6 @@ The device MUST initiate the disconnect after completion of the current CWMP ses
       <object ref="Device.WiFi.EndPoint.{i}." requirement="createDelete">
         <parameter ref="Enable" requirement="readWrite"/>
         <parameter ref="Status" requirement="readOnly"/>
-        <parameter ref="Alias" requirement="readWrite"/>
         <parameter ref="ProfileReference" requirement="readWrite"/>
         <parameter ref="SSIDReference" requirement="readOnly"/>
         <parameter ref="ProfileNumberOfEntries" requirement="readOnly"/>
@@ -15723,7 +15701,6 @@ The device MUST initiate the disconnect after completion of the current CWMP ses
       <object ref="Device.WiFi.EndPoint.{i}.Profile.{i}." requirement="createDelete">
         <parameter ref="Enable" requirement="readWrite"/>
         <parameter ref="Status" requirement="readOnly"/>
-        <parameter ref="Alias" requirement="readWrite"/>
         <parameter ref="SSID" requirement="readWrite"/>
         <parameter ref="Location" requirement="readWrite"/>
         <parameter ref="Priority" requirement="readWrite"/>
@@ -15780,7 +15757,6 @@ The device MUST initiate the disconnect after completion of the current CWMP ses
         <parameter ref="PortNumberOfEntries" requirement="readOnly"/>
       </object>
       <object ref="Device.USB.Port.{i}." requirement="present">
-        <parameter ref="Alias" requirement="readWrite"/>
         <parameter ref="Name" requirement="readOnly"/>
         <parameter ref="Standard" requirement="readOnly"/>
         <parameter ref="Type" requirement="readOnly"/>
@@ -15798,12 +15774,10 @@ The device MUST initiate the disconnect after completion of the current CWMP ses
       <object ref="Device.NAT.InterfaceSetting.{i}." requirement="createDelete">
         <parameter ref="Enable" requirement="readWrite"/>
         <parameter ref="Status" requirement="readOnly"/>
-        <parameter ref="Alias" requirement="readWrite"/>
         <parameter ref="Interface" requirement="readWrite"/>
       </object>
       <object ref="Device.NAT.PortMapping.{i}." requirement="createDelete">
         <parameter ref="Enable" requirement="readWrite"/>
-        <parameter ref="Alias" requirement="readWrite"/>
         <parameter ref="Interface" requirement="readWrite"/>
         <parameter ref="AllInterfaces" requirement="readWrite"/>
         <parameter ref="LeaseDuration" requirement="readOnly"/>
@@ -15838,7 +15812,6 @@ The device MUST initiate the disconnect after completion of the current CWMP ses
         <parameter ref="DefaultTrafficClass" requirement="readWrite"/>
       </object>
       <object ref="Device.QoS.Classification.{i}." requirement="createDelete">
-        <parameter ref="Alias" requirement="readWrite"/>
         <parameter ref="Enable" requirement="readWrite"/>
         <parameter ref="Status" requirement="readOnly"/>
         <parameter ref="Order" requirement="readWrite"/>
@@ -15875,7 +15848,6 @@ The device MUST initiate the disconnect after completion of the current CWMP ses
         <parameter ref="TrafficClass" requirement="readWrite"/>
       </object>
       <object ref="Device.QoS.Policer.{i}." requirement="createDelete">
-        <parameter ref="Alias" requirement="readWrite"/>
         <parameter ref="Enable" requirement="readWrite"/>
         <parameter ref="Status" requirement="readOnly"/>
         <parameter ref="CommittedRate" requirement="readWrite"/>
@@ -15892,7 +15864,6 @@ The device MUST initiate the disconnect after completion of the current CWMP ses
         <parameter ref="PartialConformingAction" requirement="readWrite"/>
       </object>
       <object ref="Device.QoS.Queue.{i}." requirement="createDelete">
-        <parameter ref="Alias" requirement="readWrite"/>
         <parameter ref="Enable" requirement="readWrite"/>
         <parameter ref="Status" requirement="readOnly"/>
         <parameter ref="Interface" requirement="readWrite"/>
@@ -15911,20 +15882,17 @@ The device MUST initiate the disconnect after completion of the current CWMP ses
       <object ref="Device.QoS.Shaper.{i}." requirement="createDelete">
         <parameter ref="Enable" requirement="readWrite"/>
         <parameter ref="Status" requirement="readOnly"/>
-        <parameter ref="Alias" requirement="readWrite"/>
         <parameter ref="Interface" requirement="readWrite"/>
         <parameter ref="ShapingRate" requirement="readWrite"/>
         <parameter ref="ShapingBurstSize" requirement="readWrite"/>
       </object>
       <object ref="Device.Routing.Router.{i}.IPv4Forwarding.{i}." requirement="notSpecified">
-        <parameter ref="Alias" requirement="readWrite"/>
         <parameter ref="ForwardingPolicy" requirement="readWrite"/>
       </object>
     </profile>
 
     <profile name="QoSDynamicFlow:1">
       <object ref="Device.QoS.App.{i}." requirement="createDelete">
-        <parameter ref="Alias" requirement="readWrite"/>
         <parameter ref="Enable" requirement="readWrite"/>
         <parameter ref="Status" requirement="readOnly"/>
         <parameter ref="ProtocolIdentifier" requirement="readWrite"/>
@@ -15936,7 +15904,6 @@ The device MUST initiate the disconnect after completion of the current CWMP ses
         <parameter ref="DefaultTrafficClass" requirement="readWrite"/>
       </object>
       <object ref="Device.QoS.Flow.{i}." requirement="createDelete">
-        <parameter ref="Alias" requirement="readWrite"/>
         <parameter ref="Enable" requirement="readWrite"/>
         <parameter ref="Status" requirement="readOnly"/>
         <parameter ref="Type" requirement="readWrite"/>
@@ -15950,7 +15917,6 @@ The device MUST initiate the disconnect after completion of the current CWMP ses
         <parameter ref="TrafficClass" requirement="readWrite"/>
       </object>
       <object ref="Device.QoS.Classification.{i}." requirement="notSpecified">
-        <parameter ref="Alias" requirement="readWrite"/>
         <parameter ref="App" requirement="readWrite"/>
       </object>
     </profile>
@@ -15960,7 +15926,6 @@ The device MUST initiate the disconnect after completion of the current CWMP ses
         <parameter ref="QueueStatsNumberOfEntries" requirement="readOnly"/>
       </object>
       <object ref="Device.QoS.Policer.{i}." requirement="notSpecified">
-        <parameter ref="Alias" requirement="readWrite"/>
         <parameter ref="TotalCountedPackets" requirement="readOnly"/>
         <parameter ref="TotalCountedBytes" requirement="readOnly"/>
         <parameter ref="ConformingCountedPackets" requirement="readOnly"/>
@@ -15987,7 +15952,6 @@ The device MUST initiate the disconnect after completion of the current CWMP ses
         <parameter ref="HostNumberOfEntries" requirement="readOnly"/>
       </object>
       <object ref="Device.Hosts.Host.{i}." requirement="present">
-        <parameter ref="Alias" requirement="readWrite"/>
         <parameter ref="IPAddress" requirement="readOnly"/>
         <parameter ref="AddressSource" requirement="readOnly"/>
         <parameter ref="LeaseTimeRemaining" requirement="readOnly"/>
@@ -16013,7 +15977,6 @@ The device MUST initiate the disconnect after completion of the current CWMP ses
         <parameter ref="ManageableDeviceNumberOfEntries" requirement="readOnly"/>
       </object>
       <object ref="Device.ManagementServer.ManageableDevice.{i}." requirement="present">
-        <parameter ref="Alias" requirement="readWrite"/>
         <parameter ref="ManufacturerOUI" requirement="readOnly"/>
         <parameter ref="SerialNumber" requirement="readOnly"/>
         <parameter ref="ProductClass" requirement="readOnly"/>
@@ -16063,7 +16026,6 @@ The device MUST initiate the disconnect after completion of the current CWMP ses
       <object ref="Device.IEEE8021x.Supplicant.{i}." requirement="createDelete">
         <parameter ref="Enable" requirement="readWrite"/>
         <parameter ref="Status" requirement="readOnly"/>
-        <parameter ref="Alias" requirement="readWrite"/>
         <parameter ref="PAEState" requirement="readOnly"/>
         <parameter ref="EAPIdentity" requirement="readWrite"/>
         <parameter ref="MaxStart" requirement="readWrite"/>
@@ -16245,7 +16207,6 @@ The device MUST initiate the disconnect after completion of the current CWMP ses
       </object>
       <object ref="Device.DHCPv4.Client.{i}." requirement="createDelete">
         <parameter ref="Enable" requirement="readWrite"/>
-        <parameter ref="Alias" requirement="readWrite"/>
         <parameter ref="Interface" requirement="readWrite"/>
         <parameter ref="Status" requirement="readOnly"/>
         <parameter ref="Renew" requirement="readWrite"/>
@@ -16261,14 +16222,12 @@ The device MUST initiate the disconnect after completion of the current CWMP ses
       <object ref="Device.DHCPv4.Client.{i}.SentOption.{i}." requirement="createDelete">
         <description>This table is REQUIRED to support sending of option 60 (Vendor Class Identifier) and option 77 (User Class Identifier) values.</description>
         <parameter ref="Enable" requirement="readWrite"/>
-        <parameter ref="Alias" requirement="readWrite"/>
         <parameter ref="Tag" requirement="readWrite"/>
         <parameter ref="Value" requirement="readWrite"/>
       </object>
       <object ref="Device.DHCPv4.Client.{i}.ReqOption.{i}." requirement="createDelete">
         <description>This table is REQUIRED to support requesting of option 60 (Vendor Class Identifier), option 61 (Client Identifier) and option 77 (User Class Identifier) values.</description>
         <parameter ref="Enable" requirement="readWrite"/>
-        <parameter ref="Alias" requirement="readWrite"/>
         <parameter ref="Order" requirement="readWrite"/>
         <parameter ref="Tag" requirement="readWrite"/>
         <parameter ref="Value" requirement="readOnly"/>
@@ -16283,7 +16242,6 @@ The device MUST initiate the disconnect after completion of the current CWMP ses
       </object>
       <object ref="Device.DHCPv4.Server.Pool.{i}." requirement="createDelete">
         <parameter ref="Enable" requirement="readWrite"/>
-        <parameter ref="Alias" requirement="readWrite"/>
         <parameter ref="Order" requirement="readWrite"/>
         <parameter ref="Interface" requirement="readWrite"/>
         <parameter ref="MinAddress" requirement="readWrite"/>
@@ -16298,7 +16256,6 @@ The device MUST initiate the disconnect after completion of the current CWMP ses
       </object>
       <object ref="Device.DHCPv4.Server.Pool.{i}.Option.{i}." requirement="createDelete">
         <parameter ref="Enable" requirement="readWrite"/>
-        <parameter ref="Alias" requirement="readWrite"/>
         <parameter ref="Tag" requirement="readWrite"/>
         <parameter ref="Value" requirement="readWrite"/>
       </object>
@@ -16322,7 +16279,6 @@ The device MUST initiate the disconnect after completion of the current CWMP ses
       </object>
       <object ref="Device.DHCPv4.Relay.Forwarding.{i}." requirement="createDelete">
         <parameter ref="Enable" requirement="readWrite"/>
-        <parameter ref="Alias" requirement="readWrite"/>
         <parameter ref="Order" requirement="readWrite"/>
         <parameter ref="Interface" requirement="readWrite"/>
         <parameter ref="LocallyServed" requirement="readWrite"/>
